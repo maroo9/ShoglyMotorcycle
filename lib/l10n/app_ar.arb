@@ -1,0 +1,153 @@
+{
+  "app_name": "شَغلي",
+
+  "register": "إنشاء حساب",
+  "login": "تسجيل الدخول",
+  "logout": "تسجيل الخروج",
+  "name": "الاسم",
+  "email": "البريد الإلكتروني",
+  "phone": "رقم الهاتف",
+  "password": "كلمة المرور",
+  "re_password": "تأكيد كلمة المرور",
+  "create_account": "إنشاء حساب",
+  "already_have_account": "لديك حساب بالفعل؟",
+  "dont_have_account": "ليس لديك حساب؟",
+  "forget_password": "نسيت كلمة المرور؟",
+  "reset_password": "إعادة تعيين كلمة المرور",
+  "login_with_google": "تسجيل الدخول باستخدام Google",
+  "welcome_message": "مرحبًا بعودتك",
+
+  "home": "الرئيسية",
+  "motorcycles": "الدراجات",
+  "payments": "المدفوعات",
+  "maintenance": "الصيانة",
+  "customers": "العملاء",
+  "profile": "الملف الشخصي",
+  "settings": "الإعدادات",
+
+  "language": "اللغة",
+  "theme": "المظهر",
+  "light": "فاتح",
+  "dark": "داكن",
+
+  "dashboard": "لوحة التحكم",
+  "total_motorcycles": "إجمالي الدراجات",
+  "available_motorcycles": "الدراجات المتاحة",
+  "rented_motorcycles": "الدراجات المؤجرة",
+  "under_maintenance": "قيد الصيانة",
+  "total_revenue": "إجمالي الإيرادات",
+  "pending_payments": "المدفوعات المعلقة",
+
+  "add_motorcycle": "إضافة دراجة",
+  "edit_motorcycle": "تعديل الدراجة",
+  "delete_motorcycle": "حذف الدراجة",
+  "motorcycle_details": "تفاصيل الدراجة",
+
+  "motorcycle_name": "اسم الدراجة",
+  "motorcycle_model": "موديل الدراجة",
+  "license_number": "رقم اللوحة",
+  "owner_name": "اسم المالك",
+  "motorcycle_image": "صورة الدراجة",
+
+  "status": "الحالة",
+  "available": "متاحة",
+  "rented": "مؤجرة",
+  "maintenance_status": "صيانة",
+
+  "customer": "العميل",
+  "customer_name": "اسم العميل",
+  "customers_list": "قائمة العملاء",
+  "add_customer": "إضافة عميل",
+  "edit_customer": "تعديل العميل",
+  "customer_details": "تفاصيل العميل",
+
+  "national_id": "الرقم القومي",
+  "driving_license": "رقم رخصة القيادة",
+  "address": "العنوان",
+
+  "rental": "التأجير",
+  "rent_motorcycle": "تأجير دراجة",
+  "rental_history": "سجل التأجير",
+  "rental_start": "تاريخ بداية التأجير",
+  "rental_end": "تاريخ نهاية التأجير",
+  "rental_period": "مدة التأجير",
+  "daily_rate": "السعر اليومي",
+  "total_amount": "إجمالي المبلغ",
+
+  "payments_title": "المدفوعات",
+  "record_payment": "تسجيل دفعة",
+  "payment_amount": "قيمة الدفعة",
+  "amount_paid": "المبلغ المدفوع",
+  "remaining_balance": "المبلغ المتبقي",
+  "payment_date": "تاريخ الدفع",
+  "payment_method": "طريقة الدفع",
+
+  "cash": "نقدًا",
+  "card": "بطاقة",
+  "bank_transfer": "تحويل بنكي",
+
+  "financial_inflows": "الإيرادات المالية",
+
+  "maintenance_title": "الصيانة",
+  "add_maintenance": "إضافة صيانة",
+  "edit_maintenance": "تعديل الصيانة",
+  "maintenance_type": "نوع الصيانة",
+  "maintenance_cost": "تكلفة الصيانة",
+  "maintenance_date": "تاريخ الصيانة",
+  "technician": "الفني",
+  "service_details": "تفاصيل الخدمة",
+  "next_service": "الصيانة القادمة",
+  "mark_completed": "تحديد كمكتملة",
+
+  "oil_change": "تغيير الزيت",
+  "engine_repair": "إصلاح المحرك",
+  "brake_service": "صيانة الفرامل",
+  "tire_replacement": "تغيير الإطارات",
+  "general_service": "صيانة عامة",
+
+  "search": "بحث",
+  "filter": "تصفية",
+  "save": "حفظ",
+  "cancel": "إلغاء",
+  "edit": "تعديل",
+  "delete": "حذف",
+  "view": "عرض",
+  "details": "التفاصيل",
+  "add": "إضافة",
+  "update": "تحديث",
+  "confirm": "تأكيد",
+  "close": "إغلاق",
+
+  "yes": "نعم",
+  "no": "لا",
+
+  "today": "اليوم",
+  "date": "التاريخ",
+
+  "active": "نشط",
+  "completed": "مكتمل",
+  "pending": "قيد الانتظار",
+
+  "notifications": "الإشعارات",
+
+  "no_motorcycles": "لا توجد دراجات متاحة.",
+  "no_customers": "لا يوجد عملاء.",
+  "no_payments": "لا توجد سجلات مدفوعات.",
+  "no_maintenance": "لا توجد سجلات صيانة.",
+
+  "success": "تم بنجاح",
+  "error": "حدث خطأ",
+
+  "data_saved": "تم حفظ البيانات بنجاح.",
+  "data_updated": "تم تحديث البيانات بنجاح.",
+  "data_deleted": "تم حذف البيانات بنجاح.",
+
+  "search_motorcycle": "ابحث عن دراجة",
+  "search_customer": "ابحث عن عميل",
+
+  "owner": "المالك",
+  "renter": "المستأجر الحالي",
+
+  "quick_actions": "الإجراءات السريعة",
+  "recent_activity": "آخر الأنشطة"
+}

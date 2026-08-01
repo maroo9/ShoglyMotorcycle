@@ -1,0 +1,153 @@
+{
+  "app_name": "SHOGHLY",
+
+  "register": "Register",
+  "login": "Login",
+  "logout": "Logout",
+  "name": "Name",
+  "email": "Email",
+  "phone": "Phone",
+  "password": "Password",
+  "re_password": "Confirm Password",
+  "create_account": "Create Account",
+  "already_have_account": "Already Have an Account?",
+  "dont_have_account": "Don't Have an Account?",
+  "forget_password": "Forgot Password?",
+  "reset_password": "Reset Password",
+  "login_with_google": "Login with Google",
+  "welcome_message": "Welcome Back",
+
+  "home": "Home",
+  "motorcycles": "Motorcycles",
+  "payments": "Payments",
+  "maintenance": "Maintenance",
+  "customers": "Customers",
+  "profile": "Profile",
+  "settings": "Settings",
+
+  "language": "Language",
+  "theme": "Theme",
+  "light": "Light",
+  "dark": "Dark",
+
+  "dashboard": "Dashboard",
+  "total_motorcycles": "Total Motorcycles",
+  "available_motorcycles": "Available Motorcycles",
+  "rented_motorcycles": "Rented Motorcycles",
+  "under_maintenance": "Under Maintenance",
+  "total_revenue": "Total Revenue",
+  "pending_payments": "Pending Payments",
+
+  "add_motorcycle": "Add Motorcycle",
+  "edit_motorcycle": "Edit Motorcycle",
+  "delete_motorcycle": "Delete Motorcycle",
+  "motorcycle_details": "Motorcycle Details",
+
+  "motorcycle_name": "Motorcycle Name",
+  "motorcycle_model": "Model",
+  "license_number": "License Number",
+  "owner_name": "Owner Name",
+  "motorcycle_image": "Motorcycle Image",
+
+  "status": "Status",
+  "available": "Available",
+  "rented": "Rented",
+  "maintenance_status": "Maintenance",
+
+  "customer": "Customer",
+  "customer_name": "Customer Name",
+  "customers_list": "Customers List",
+  "add_customer": "Add Customer",
+  "edit_customer": "Edit Customer",
+  "customer_details": "Customer Details",
+
+  "national_id": "National ID",
+  "driving_license": "Driving License Number",
+  "address": "Address",
+
+  "rental": "Rental",
+  "rent_motorcycle": "Rent Motorcycle",
+  "rental_history": "Rental History",
+  "rental_start": "Rental Start",
+  "rental_end": "Rental End",
+  "rental_period": "Rental Period",
+  "daily_rate": "Daily Rate",
+  "total_amount": "Total Amount",
+
+  "payments_title": "Payments",
+  "record_payment": "Record Payment",
+  "payment_amount": "Payment Amount",
+  "amount_paid": "Amount Paid",
+  "remaining_balance": "Remaining Balance",
+  "payment_date": "Payment Date",
+  "payment_method": "Payment Method",
+
+  "cash": "Cash",
+  "card": "Card",
+  "bank_transfer": "Bank Transfer",
+
+  "financial_inflows": "Financial Inflows",
+
+  "maintenance_title": "Maintenance",
+  "add_maintenance": "Add Maintenance",
+  "edit_maintenance": "Edit Maintenance",
+  "maintenance_type": "Maintenance Type",
+  "maintenance_cost": "Maintenance Cost",
+  "maintenance_date": "Maintenance Date",
+  "technician": "Technician",
+  "service_details": "Service Details",
+  "next_service": "Next Service",
+  "mark_completed": "Mark Completed",
+
+  "oil_change": "Oil Change",
+  "engine_repair": "Engine Repair",
+  "brake_service": "Brake Service",
+  "tire_replacement": "Tire Replacement",
+  "general_service": "General Service",
+
+  "search": "Search",
+  "filter": "Filter",
+  "save": "Save",
+  "cancel": "Cancel",
+  "edit": "Edit",
+  "delete": "Delete",
+  "view": "View",
+  "details": "Details",
+  "add": "Add",
+  "update": "Update",
+  "confirm": "Confirm",
+  "close": "Close",
+
+  "yes": "Yes",
+  "no": "No",
+
+  "today": "Today",
+  "date": "Date",
+
+  "active": "Active",
+  "completed": "Completed",
+  "pending": "Pending",
+
+  "notifications": "Notifications",
+
+  "no_motorcycles": "No motorcycles available.",
+  "no_customers": "No customers found.",
+  "no_payments": "No payment records found.",
+  "no_maintenance": "No maintenance records found.",
+
+  "success": "Success",
+  "error": "Error",
+
+  "data_saved": "Data saved successfully.",
+  "data_updated": "Data updated successfully.",
+  "data_deleted": "Data deleted successfully.",
+
+  "search_motorcycle": "Search Motorcycle",
+  "search_customer": "Search Customer",
+
+  "owner": "Owner",
+  "renter": "Current Renter",
+
+  "quick_actions": "Quick Actions",
+  "recent_activity": "Recent Activity"
+}
