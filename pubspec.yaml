@@ -60,7 +60,6 @@ dependencies:
   flutter_photon: ^2.0.1
   url_launcher: ^6.3.2
   google_sign_in: ^7.2.0
-  record: ^6.2.0
   family_bottom_sheet: ^0.1.0
   share_plus: ^12.0.2
   social_sharing_plus: ^1.2.3

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-import '../../../../Core/AssetsManger.dart';
+import '../../../../Core/AssetsManger/AssetsManger.dart';
 import '../../../../Core/ColorsManger/Colorsmanger.dart';
 import '../../../../Core/routesMnager/RoutesManger.dart';
 class Splashscreen extends StatefulWidget {

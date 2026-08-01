@@ -7,8 +7,9 @@ plugins {
 
 android {
     namespace = "com.shoghly.shoghly"
-    compileSdk = flutter.compileSdkVersion
-    ndkVersion = flutter.ndkVersion
+    compileSdk = 36
+    ndkVersion = "27.0.12077973"
+
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
@@ -24,10 +25,12 @@ android {
         applicationId = "com.shoghly.shoghly"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
-        minSdk = flutter.minSdkVersion
-        targetSdk = flutter.targetSdkVersion
+        minSdk = 24
+        targetSdk = 34
         versionCode = flutter.versionCode
         versionName = flutter.versionName
+//        manifestPlaceholders["GOOGLE_MAPS_API_KEY"] =
+//            localProperties.getProperty("google.maps.api.key", "")
     }
 
     buildTypes {
