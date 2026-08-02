@@ -126,7 +126,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get motorcycle_name => 'Motorcycle Name';
 
   @override
-  String get motorcycle_model => 'Model';
+  String get motorcycle_model => 'Characteristics / Model';
 
   @override
   String get license_number => 'License Number';
@@ -382,4 +382,52 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get recent_activity => 'Recent Activity';
+
+  @override
+  String get representative => 'Representative';
+
+  @override
+  String get representatives => 'Representatives';
+
+  @override
+  String get add_representative => 'Add Representative';
+
+  @override
+  String get edit_representative => 'Edit Representative';
+
+  @override
+  String get representative_details => 'Representative Details';
+
+  @override
+  String get representative_name => 'Representative Name';
+
+  @override
+  String get assign_motorcycle => 'Assign Motorcycle';
+
+  @override
+  String get assigned_motorcycle => 'Assigned Motorcycle';
+
+  @override
+  String get search_motorcycle_hint => 'Search by ID, license, owner, color, or model';
+
+  @override
+  String get color => 'Color';
+
+  @override
+  String get save_motorcycle => 'Save Motorcycle';
+
+  @override
+  String get add_motorcycle_first => 'Add a motorcycle first before adding a representative.';
+
+  @override
+  String get motorcycle_id_code => 'Motorcycle ID / Code';
+
+  @override
+  String get could_not_load_representatives => 'Could not load representatives';
+
+  @override
+  String get no_representatives_found => 'No representatives found';
+
+  @override
+  String get could_not_load_motorcycles => 'Could not load motorcycles';
 }

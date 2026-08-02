@@ -45,23 +45,5 @@ class UserModel {
     };
   }
 
-  UserModel copyWith({
-    String? id,
-    String? name,
-    String? email,
-    String? phone,
-    String? role,
-    String? profileImage,
-    Timestamp? createdAt,
-  }) {
-    return UserModel(
-      id: id ?? this.id,
-      name: name ?? this.name,
-      email: email ?? this.email,
-      phone: phone ?? this.phone,
-      role: role ?? this.role,
-      profileImage: profileImage ?? this.profileImage,
-      createdAt: createdAt ?? this.createdAt,
-    );
-  }
+
 }

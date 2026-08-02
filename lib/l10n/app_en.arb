@@ -149,5 +149,29 @@
   "renter": "Current Renter",
 
   "quick_actions": "Quick Actions",
-  "recent_activity": "Recent Activity"
+  "recent_activity": "Recent Activity",
+    "representative": "Representative",
+    "representatives": "Representatives",
+    "add_representative": "Add Representative",
+    "edit_representative": "Edit Representative",
+    "representative_details": "Representative Details",
+    "representative_name": "Representative Name",
+    "assign_motorcycle": "Assign Motorcycle",
+    "assigned_motorcycle": "Assigned Motorcycle",
+     "motorcycles": "Motorcycles",
+      "search_motorcycle_hint": "Search by ID, license, owner, color, or model",
+      "add_motorcycle": "Add Motorcycle",
+      "motorcycle_name": "Motorcycle Name",
+      "motorcycle_model": "Characteristics / Model",
+      "license_number": "License Number",
+      "color": "Color",
+      "owner": "Owner",
+      "save_motorcycle": "Save Motorcycle",
+        "add_motorcycle_first": "Add a motorcycle first before adding a representative.",
+        "motorcycle_id_code": "Motorcycle ID / Code",
+        "could_not_load_representatives": "Could not load representatives",
+        "no_representatives_found": "No representatives found",
+        "could_not_load_motorcycles": "Could not load motorcycles"
+
+
 }

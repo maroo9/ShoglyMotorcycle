@@ -5,7 +5,7 @@ import 'package:shoghly/fetures/mainlayout/tabs/Home/Home.dart';
 import 'package:shoghly/fetures/mainlayout/tabs/Maintenance/Maintance.dart';
 import 'package:shoghly/fetures/mainlayout/tabs/Motorcycles/Motorcycles.dart';
 import 'package:shoghly/fetures/mainlayout/tabs/Payments/Payments.dart';
-
+import 'tabs/representative/Representative.dart';
 import '../../Core/ColorsManger/Colorsmanger.dart';
 import '../../l10n/app_localizations.dart';
 
@@ -17,14 +17,21 @@ class MainLayout extends StatefulWidget {
 }
 
 class _MainLayoutState extends State<MainLayout> {
-  late final List<Widget> _tabs = [
-    Home(),
-    Motorcycles(),
-    Payments(),
-    Maintance(),
-  ];
+  late final List<Widget> _tabs;
 
   int selectedIndex = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _tabs = [
+      Home(onShortcutSelected: _onTap),
+      Motorcycles(),
+      Representative(),
+      Payments(),
+      Maintance(),
+    ];
+  }
 
   void _onTap(int newIndex) {
     if (newIndex == selectedIndex) return;
@@ -62,15 +69,22 @@ class _MainLayoutState extends State<MainLayout> {
           icon: const Icon(Icons.motorcycle),
           label: AppLocalizations.of(context)!.motorcycles,
         ),
+
         BottomNavigationBarItem(
-          icon: const Icon(Icons.settings),
-          label: AppLocalizations.of(context)!.maintenance,
+          icon: const Icon(Icons.person),
+          label: AppLocalizations.of(context)!.representative,
         ),
+
         BottomNavigationBarItem(
           icon: const Icon(Icons.monetization_on),
           label: AppLocalizations.of(context)!.payments,
+        ),
+        BottomNavigationBarItem(
+          icon: const Icon(Icons.settings),
+          label: AppLocalizations.of(context)!.maintenance,
         ),
       ],
     );
   }
 }
+

@@ -332,7 +332,7 @@ abstract class AppLocalizations {
   /// No description provided for @motorcycle_model.
   ///
   /// In en, this message translates to:
-  /// **'Model'**
+  /// **'Characteristics / Model'**
   String get motorcycle_model;
 
   /// No description provided for @license_number.
@@ -844,6 +844,102 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Recent Activity'**
   String get recent_activity;
+
+  /// No description provided for @representative.
+  ///
+  /// In en, this message translates to:
+  /// **'Representative'**
+  String get representative;
+
+  /// No description provided for @representatives.
+  ///
+  /// In en, this message translates to:
+  /// **'Representatives'**
+  String get representatives;
+
+  /// No description provided for @add_representative.
+  ///
+  /// In en, this message translates to:
+  /// **'Add Representative'**
+  String get add_representative;
+
+  /// No description provided for @edit_representative.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Representative'**
+  String get edit_representative;
+
+  /// No description provided for @representative_details.
+  ///
+  /// In en, this message translates to:
+  /// **'Representative Details'**
+  String get representative_details;
+
+  /// No description provided for @representative_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Representative Name'**
+  String get representative_name;
+
+  /// No description provided for @assign_motorcycle.
+  ///
+  /// In en, this message translates to:
+  /// **'Assign Motorcycle'**
+  String get assign_motorcycle;
+
+  /// No description provided for @assigned_motorcycle.
+  ///
+  /// In en, this message translates to:
+  /// **'Assigned Motorcycle'**
+  String get assigned_motorcycle;
+
+  /// No description provided for @search_motorcycle_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Search by ID, license, owner, color, or model'**
+  String get search_motorcycle_hint;
+
+  /// No description provided for @color.
+  ///
+  /// In en, this message translates to:
+  /// **'Color'**
+  String get color;
+
+  /// No description provided for @save_motorcycle.
+  ///
+  /// In en, this message translates to:
+  /// **'Save Motorcycle'**
+  String get save_motorcycle;
+
+  /// No description provided for @add_motorcycle_first.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a motorcycle first before adding a representative.'**
+  String get add_motorcycle_first;
+
+  /// No description provided for @motorcycle_id_code.
+  ///
+  /// In en, this message translates to:
+  /// **'Motorcycle ID / Code'**
+  String get motorcycle_id_code;
+
+  /// No description provided for @could_not_load_representatives.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not load representatives'**
+  String get could_not_load_representatives;
+
+  /// No description provided for @no_representatives_found.
+  ///
+  /// In en, this message translates to:
+  /// **'No representatives found'**
+  String get no_representatives_found;
+
+  /// No description provided for @could_not_load_motorcycles.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not load motorcycles'**
+  String get could_not_load_motorcycles;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

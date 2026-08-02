@@ -1,0 +1,90 @@
+import 'package:flutter/material.dart';
+
+import '../../../../Core/ColorsManger/Colorsmanger.dart';
+import '../../../../Core/Widgets/InfoTile.dart';
+import '../../../../Core/Widgets/StatusChip.dart';
+import '../../../../Models/MotorcycleModel.dart';
+import '../../../../Models/representativeModel.dart';
+
+class MotorcycleCard extends StatelessWidget {
+  const MotorcycleCard({
+    required this.motorcycle,
+    this.representative,
+  });
+
+  final MotorcycleModel motorcycle;
+  final RepresentativeModel? representative;
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      color: Colorsmanger.White,
+      elevation: 1,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      child: Padding(
+        padding: const EdgeInsets.all(14),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Container(
+                  height: 42,
+                  width: 42,
+                  decoration: BoxDecoration(
+                    color: Colorsmanger.lightgrey,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: const Icon(Icons.motorcycle),
+                ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                       motorcycle.name,
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                      Text(
+                        motorcycle.licenseNumber,
+                        style: const TextStyle(color: Colorsmanger.Grey),
+                      ),
+                    ],
+                  ),
+                ),
+                StatusChip(
+                  status: representative == null ? "Available" : "Rented",
+                ),
+              ],
+            ),
+            const SizedBox(height: 12),
+            InfoRow(icon: Icons.tag, text: motorcycle.id),
+            const SizedBox(height: 6),
+            InfoRow(icon: Icons.description, text: motorcycle.model),
+            const SizedBox(height: 6),
+            InfoRow(icon: Icons.palette, text: motorcycle.color),
+            const SizedBox(height: 6),
+            InfoRow(icon: Icons.person, text: motorcycle.ownerId),
+            if (representative != null) ...[
+              const SizedBox(height: 6),
+              InfoRow(
+                icon: Icons.badge,
+                text: representative!.name,
+              ),
+              const SizedBox(height: 6),
+              InfoRow(
+                icon: Icons.phone,
+                text: representative!.phone,
+              ),
+            ],
+          ],
+        ),
+      ),
+    );
+  }
+}
+

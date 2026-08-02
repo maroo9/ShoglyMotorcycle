@@ -60,7 +60,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get home => 'الرئيسية';
 
   @override
-  String get motorcycles => 'الدراجات';
+  String get motorcycles => 'الدراجات النارية';
 
   @override
   String get payments => 'المدفوعات';
@@ -111,7 +111,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get pending_payments => 'المدفوعات المعلقة';
 
   @override
-  String get add_motorcycle => 'إضافة دراجة';
+  String get add_motorcycle => 'إضافة دراجة نارية';
 
   @override
   String get edit_motorcycle => 'تعديل الدراجة';
@@ -123,10 +123,10 @@ class AppLocalizationsAr extends AppLocalizations {
   String get motorcycle_details => 'تفاصيل الدراجة';
 
   @override
-  String get motorcycle_name => 'اسم الدراجة';
+  String get motorcycle_name => 'اسم الدراجة النارية';
 
   @override
-  String get motorcycle_model => 'موديل الدراجة';
+  String get motorcycle_model => 'المواصفات / الموديل';
 
   @override
   String get license_number => 'رقم اللوحة';
@@ -382,4 +382,52 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get recent_activity => 'آخر الأنشطة';
+
+  @override
+  String get representative => 'مندوب';
+
+  @override
+  String get representatives => 'المندوبون';
+
+  @override
+  String get add_representative => 'إضافة مندوب';
+
+  @override
+  String get edit_representative => 'تعديل بيانات المندوب';
+
+  @override
+  String get representative_details => 'بيانات المندوب';
+
+  @override
+  String get representative_name => 'اسم المندوب';
+
+  @override
+  String get assign_motorcycle => 'تخصيص دراجة';
+
+  @override
+  String get assigned_motorcycle => 'الدراجة المخصصة';
+
+  @override
+  String get search_motorcycle_hint => 'ابحث بالمعرف أو رقم اللوحة أو المالك أو اللون أو الموديل';
+
+  @override
+  String get color => 'اللون';
+
+  @override
+  String get save_motorcycle => 'حفظ الدراجة النارية';
+
+  @override
+  String get add_motorcycle_first => 'أضف دراجة نارية أولاً قبل إضافة مندوب.';
+
+  @override
+  String get motorcycle_id_code => 'معرف / كود الدراجة النارية';
+
+  @override
+  String get could_not_load_representatives => 'تعذر تحميل بيانات المندوبين';
+
+  @override
+  String get no_representatives_found => 'لا يوجد مندوبون';
+
+  @override
+  String get could_not_load_motorcycles => 'تعذر تحميل بيانات الدراجات النارية';
 }

@@ -1,137 +1,326 @@
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../Core/ColorsManger/Colorsmanger.dart';
+import '../../../../Core/routesMnager/RoutesManger.dart';
+import '../../../../Models/MaintenanceModel.dart';
+import '../../../../Models/MotorcycleModel.dart';
+import '../../../../Models/PaymentModel.dart';
 import '../../../../Models/UserModel (Operation Manager).dart';
+import '../../../../Models/representativeModel.dart';
+import '../../../../Providers/LocaleProvider.dart';
+import '../../../../Providers/UserProvider.dart';
+import '../../../../Services/FirebaseServices.dart';
 import '../../../../l10n/app_localizations.dart';
+import 'HomeViewModel.dart';
+import 'Shortcuts/HomeShortcuts.dart';
+import 'Statics/DashboardStats.dart';
 
 class Home extends StatefulWidget {
-  const Home({super.key});
+  const Home({super.key, required this.onShortcutSelected});
+
+  final ValueChanged<int> onShortcutSelected;
 
   @override
   State<Home> createState() => _HomeState();
 }
 
 class _HomeState extends State<Home> {
-  late TextEditingController _searchcontroler;
-  UserModel? currentUser;
+  late final HomeViewModel viewModel;
 
   @override
   void initState() {
     super.initState();
-    _searchcontroler = TextEditingController();
-//    _loadingCurrentUser();
+    viewModel = HomeViewModel();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      context.read<UserProvider>().loadUser();
+    });
   }
-
-  // Future<void> _loadingCurrentUser() async {
-  //   currentUser =
-  //   await FirebaseServices.getUserById(FirebaseAuth.instance.currentUser!.uid);
-  //
-  //   if (!mounted) return;
-  //   setState(() {});
-  // }
 
   @override
   void dispose() {
-    _searchcontroler.dispose();
+    viewModel.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-  //  final localeProvider = context.watch<LocaleProvider>();
-    //final viewModel = context.watch<HomeViewModel>();
+    final currentUser = context.watch<UserProvider>().currentUser;
+    final localeProvider = context.watch<LocaleProvider>();
 
-    if (currentUser == null) {
-      return const Scaffold(
-        body: Center(
-          child: CircularProgressIndicator(),
-        ),
-      );
-    }
+    return Scaffold(
+      backgroundColor: Colorsmanger.bg,
+      body: StreamBuilder<List<MotorcycleModel>>(
+        stream: viewModel.motorcyclesStream,
+        builder: (context, motorcyclesSnapshot) {
+          return StreamBuilder<List<RepresentativeModel>>(
+            stream: viewModel.representativesStream,
+            builder: (context, representativesSnapshot) {
+              return StreamBuilder<List<PaymentModel>>(
+                stream: viewModel.paymentsStream,
+                builder: (context, paymentsSnapshot) {
+                  return StreamBuilder<List<MaintenanceModel>>(
+                    stream: viewModel.maintenanceStream,
+                    builder: (context, maintenanceSnapshot) {
+                      final motorcycles = motorcyclesSnapshot.data ?? [];
+                      final representatives =
+                          representativesSnapshot.data ?? [];
+                      final payments = paymentsSnapshot.data ?? [];
+                      final maintenances = maintenanceSnapshot.data ?? [];
+                      final isLoading =
+                          motorcyclesSnapshot.connectionState ==
+                                  ConnectionState.waiting ||
+                              representativesSnapshot.connectionState ==
+                                  ConnectionState.waiting ||
+                              paymentsSnapshot.connectionState ==
+                                  ConnectionState.waiting ||
+                              maintenanceSnapshot.connectionState ==
+                                  ConnectionState.waiting;
 
-    return DefaultTabController(
-      length: 2,
-      child: Scaffold(
-        backgroundColor: Colorsmanger.bg,
-        body: Stack(
-            children: [
-              ListView(
-                padding: EdgeInsets.zero,
-                children: [
-                  Container(
-                    width: double.infinity,
-                    height: 150,
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 16, vertical: 15),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.vertical(
-                          bottom: Radius.circular(20.r)),
-                      color: Colorsmanger.darkblue,
-                    ),
-                    child: Column(
-                      children: [
-                        Row(
+                      return RefreshIndicator(
+                        onRefresh: () async {
+                          await context.read<UserProvider>().loadUser();
+                        },
+                        child: ListView(
+                          padding: EdgeInsets.zero,
                           children: [
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                SizedBox(height: 20),
-
-                                Container(
-                                  child: Text(
-                                    AppLocalizations.of(context)!
-                                        .welcome_message!,
-                                    style: GoogleFonts.dmSerifDisplay(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.w400,
-                                      color: Colorsmanger.Whiteblue,
-                                    ),
-
-                                  ),
-                                ),
-                                Text(
-                                  currentUser!.name,
-                                  style: GoogleFonts.dmSerifDisplay(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.w700,
-                                    color: Colorsmanger.offwhite,
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(8),
-                                  child: Row(
-                                    children: [
-                                      const Icon(Icons.location_on,
-                                          color: Colorsmanger.Whiteblue),
-                                      const SizedBox(width: 4),
-                                      Text(
-                                        'Cairo, Egypt',
-                                        style: GoogleFonts.inter(
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 14,
-                                          color: Colorsmanger.Whiteblue,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
+                            _HomeHeader(
+                              currentUser: currentUser,
+                              localeProvider: localeProvider,
                             ),
+                            if (isLoading)
+                              const Padding(
+                                padding: EdgeInsets.all(24),
+                                child:
+                                    Center(child: CircularProgressIndicator()),
+                              )
+                            else
+                              Padding(
+                                padding: const EdgeInsets.all(16),
+                                child: Column(
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.start,
+                                  children: [
+                                    _SectionTitle(
+                                      title: AppLocalizations.of(context)!
+                                          .dashboard,
+                                    ),
+                                    const SizedBox(height: 10),
+                                    DashboardStats(
+                                      items: [
+                                        DashboardStatItem(
+                                          title: "Total money",
+                                          value:
+                                              "${viewModel.totalCollected(payments).toStringAsFixed(0)} EGP",
+                                          icon: Icons.payments,
+                                          color: Colors.green,
+                                        ),
+                                        DashboardStatItem(
+                                          title: "Motors",
+                                          value: motorcycles.length.toString(),
+                                          icon: Icons.motorcycle,
+                                          color: Colorsmanger.Blue,
+                                        ),
+                                        DashboardStatItem(
+                                          title: "Rented",
+                                          value: viewModel
+                                              .rentedMotorcycles(
+                                                motorcycles,
+                                                representatives,
+                                              )
+                                              .toString(),
+                                          icon: Icons.assignment_ind,
+                                          color: Colors.orange,
+                                        ),
+                                        DashboardStatItem(
+                                          title: "Available",
+                                          value: viewModel
+                                              .availableMotorcycles(
+                                                motorcycles,
+                                                representatives,
+                                              )
+                                              .toString(),
+                                          icon: Icons.check_circle,
+                                          color: Colors.teal,
+                                        ),
+                                        DashboardStatItem(
+                                          title: "Representatives",
+                                          value:
+                                              representatives.length.toString(),
+                                          icon: Icons.people,
+                                          color: Colors.purple,
+                                        ),
+                                        DashboardStatItem(
+                                          title: "Pending maint.",
+                                          value: viewModel
+                                              .pendingMaintenance(maintenances)
+                                              .toString(),
+                                          icon: Icons.build,
+                                          color: Colorsmanger.Red,
+                                        ),
+                                      ],
+                                    ),
+                                    const SizedBox(height: 22),
+                                    const _SectionTitle(title: "Shortcuts"),
+                                    const SizedBox(height: 10),
+                                    HomeShortcuts(
+                                      items: [
+                                        HomeShortcutItem(
+                                          title: "Motorcycles",
+                                          subtitle: "Add and inspect motors",
+                                          icon: Icons.motorcycle,
+                                          color: Colorsmanger.Blue,
+                                          onTap: () =>
+                                              widget.onShortcutSelected(1),
+                                        ),
+                                        HomeShortcutItem(
+                                          title: "Representatives",
+                                          subtitle:
+                                              "Assign rented motorcycles",
+                                          icon: Icons.person,
+                                          color: Colors.purple,
+                                          onTap: () =>
+                                              widget.onShortcutSelected(2),
+                                        ),
+                                        HomeShortcutItem(
+                                          title: "Payments",
+                                          subtitle:
+                                              "${viewModel.pendingPayments(payments)} pending rent payments",
+                                          icon: Icons.monetization_on,
+                                          color: Colors.green,
+                                          onTap: () =>
+                                              widget.onShortcutSelected(3),
+                                        ),
+                                        HomeShortcutItem(
+                                          title: "Maintenance",
+                                          subtitle:
+                                              "${viewModel.pendingMaintenance(maintenances)} open jobs",
+                                          icon: Icons.settings,
+                                          color: Colors.orange,
+                                          onTap: () =>
+                                              widget.onShortcutSelected(4),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
                           ],
-                        )
-                      ],
-                    ),
-
-                  ),
-                ],
-              ),
-            ]
-        ),
+                        ),
+                      );
+                    },
+                  );
+                },
+              );
+            },
+          );
+        },
       ),
     );
   }
+}
+
+class _HomeHeader extends StatelessWidget {
+  const _HomeHeader({
+    required this.currentUser,
+    required this.localeProvider,
+  });
+
+  final UserModel? currentUser;
+  final LocaleProvider localeProvider;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.fromLTRB(16, 46, 16, 22),
+      decoration: const BoxDecoration(
+        color: Colorsmanger.darkblue,
+        borderRadius: BorderRadius.vertical(bottom: Radius.circular(22)),
+      ),
+      child: Row(
+        children: [
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  AppLocalizations.of(context)!.welcome_message!,
+                  style: const TextStyle(
+                    color: Colorsmanger.Whiteblue,
+                    fontSize: 15,
+                  ),
+                ),
+                const SizedBox(height: 5),
+                Text(
+                  currentUser?.name ?? "Operation Manager",
+                  style: const TextStyle(
+                    color: Colorsmanger.White,
+                    fontSize: 24,
+                    fontWeight: FontWeight.w800,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                const Row(
+                  children: [
+                    Icon(
+                      Icons.location_on,
+                      color: Colorsmanger.Whiteblue,
+                      size: 18,
+                    ),
+                    SizedBox(width: 4),
+                    Text(
+                      "Cairo, Egypt",
+                      style: TextStyle(color: Colorsmanger.Whiteblue),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          IconButton(
+            tooltip: "Language",
+            style: IconButton.styleFrom(backgroundColor: Colorsmanger.White),
+            onPressed: localeProvider.toggleLocale,
+            icon: Text(
+              localeProvider.isArabic ? "EN" : "AR",
+              style: const TextStyle(
+                color: Colorsmanger.darkblue,
+                fontWeight: FontWeight.w800,
+              ),
+            ),
+          ),
+          const SizedBox(width: 8),
+          IconButton(
+            tooltip: AppLocalizations.of(context)!.logout,
+            style: IconButton.styleFrom(backgroundColor: Colorsmanger.White),
+            onPressed: () async {
+              await FirebaseServices.logout();
+              if (!context.mounted) return;
+              Navigator.pushReplacementNamed(context, RoutesManager.Logins);
+            },
+            icon: const Icon(Icons.logout, color: Colorsmanger.darkblue),
+          ),
+        ],
+      ),
+    );
   }
+}
+
+class _SectionTitle extends StatelessWidget {
+  const _SectionTitle({required this.title});
+
+  final String title;
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      title,
+      style: const TextStyle(
+        fontSize: 18,
+        fontWeight: FontWeight.w800,
+        color: Colorsmanger.darkblue,
+      ),
+    );
+  }
+}

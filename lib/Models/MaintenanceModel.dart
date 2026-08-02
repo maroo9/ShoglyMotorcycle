@@ -26,7 +26,7 @@ class MaintenanceModel {
       id: json["id"] ?? "",
       motorcycleId: json["motorcycleId"] ?? "",
       maintenanceType: json["maintenanceType"] ?? "",
-      cost: (json["cost"] as num).toDouble(),
+      cost: json["cost"] is num ? (json["cost"] as num).toDouble() : 0,
       technician: json["technician"] ?? "",
       status: json["status"] ?? "Pending",
       notes: json["notes"] ?? "",

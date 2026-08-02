@@ -149,5 +149,28 @@
   "renter": "المستأجر الحالي",
 
   "quick_actions": "الإجراءات السريعة",
-  "recent_activity": "آخر الأنشطة"
+  "recent_activity": "آخر الأنشطة",
+    "representative": "مندوب",
+    "representatives": "المندوبون",
+    "add_representative": "إضافة مندوب",
+    "edit_representative": "تعديل بيانات المندوب",
+    "representative_details": "بيانات المندوب",
+    "representative_name": "اسم المندوب",
+    "assign_motorcycle": "تخصيص دراجة",
+    "assigned_motorcycle": "الدراجة المخصصة",
+    "motorcycles": "الدراجات النارية",
+      "search_motorcycle_hint": "ابحث بالمعرف أو رقم اللوحة أو المالك أو اللون أو الموديل",
+      "add_motorcycle": "إضافة دراجة نارية",
+      "motorcycle_name": "اسم الدراجة النارية",
+      "motorcycle_model": "المواصفات / الموديل",
+      "license_number": "رقم اللوحة",
+      "color": "اللون",
+      "owner": "المالك",
+      "save_motorcycle": "حفظ الدراجة النارية",
+      "add_motorcycle_first": "أضف دراجة نارية أولاً قبل إضافة مندوب.",
+        "motorcycle_id_code": "معرف / كود الدراجة النارية",
+        "could_not_load_representatives": "تعذر تحميل بيانات المندوبين",
+        "no_representatives_found": "لا يوجد مندوبون",
+        "could_not_load_motorcycles": "تعذر تحميل بيانات الدراجات النارية"
+
 }
