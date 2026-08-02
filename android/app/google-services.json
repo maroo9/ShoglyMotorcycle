@@ -12,7 +12,12 @@
           "package_name": "com.shoghly.shoghly"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "1047982608243-heedajgdgqhhv6il64odgulotvr7oifa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyDHbgT7CEFIceCtw9Ada9aBFkjRrG2bP_A"
@@ -20,7 +25,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1047982608243-heedajgdgqhhv6il64odgulotvr7oifa.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

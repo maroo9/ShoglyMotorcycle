@@ -6,10 +6,13 @@ import 'package:provider/provider.dart';
 import 'package:shoghly/Providers/LocaleProvider.dart';
 import 'Core/routesMnager/RoutesManger.dart';
 import 'Providers/UserProvider.dart';
+import 'firebase_options.dart';
 import 'l10n/app_localizations.dart';
 void main()async {
   WidgetsFlutterBinding.ensureInitialized(); // VERY IMPOR
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+  );
 
   final localeProvider = await LocaleProvider.create();
   runApp(MultiProvider(
