@@ -50,4 +50,13 @@ class PaymentModel {
       "notes": notes,
     };
   }
+
+  DateTime get date => paymentDate.toDate();
+
+  bool isSameDay(DateTime otherDate) {
+    final d = paymentDate.toDate();
+    return d.year == otherDate.year &&
+        d.month == otherDate.month &&
+        d.day == otherDate.day;
+  }
 }

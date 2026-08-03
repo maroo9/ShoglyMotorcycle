@@ -8,7 +8,10 @@ import '../../../../Core/Widgets/StatusChip.dart';
 import '../../../../Models/PaymentModel.dart';
 import '../../../../Models/representativeModel.dart';
 import '../../../../l10n/app_localizations.dart';
+import 'DateSelectorBar.dart';
+import 'PaymentRepresentativeCard.dart';
 import 'PaymentsViewModel.dart';
+import 'TotalMoneyCard.dart';
 
 class Payments extends StatefulWidget {
   const Payments({super.key});
@@ -40,12 +43,27 @@ class _PaymentsState extends State<Payments> {
 
   @override
   Widget build(BuildContext context) {
+    final formattedSelectedDate =
+        "${viewModel.selectedDate.year}-${viewModel.selectedDate.month.toString().padLeft(2, '0')}-${viewModel.selectedDate.day.toString().padLeft(2, '0')}";
+
     return Scaffold(
       backgroundColor: Colorsmanger.bg,
       appBar: AppBar(
         backgroundColor: Colorsmanger.darkblue,
         foregroundColor: Colorsmanger.White,
         title: Text(AppLocalizations.of(context)!.payments),
+        actions: [
+          IconButton(
+            tooltip: "Daily Reset",
+            icon: const Icon(Icons.restart_alt),
+            onPressed: () async {
+              final payments = await viewModel.paymentsStream.first;
+              if (!mounted) return;
+              _confirmDailyReset(context, payments);
+            },
+
+          ),
+        ],
       ),
       body: StreamBuilder<List<PaymentModel>>(
         stream: viewModel.paymentsStream,
@@ -54,7 +72,16 @@ class _PaymentsState extends State<Payments> {
 
           return Column(
             children: [
-              _TotalMoneyCard(total: viewModel.totalPaid(payments)),
+              DateSelectorBar(
+                viewModel: viewModel,
+                onPickDate: _pickDate,
+              ),
+              TotalMoneyCard(
+                total: viewModel.totalPaid(payments),
+                dateText: formattedSelectedDate,
+                isToday: viewModel.isSelectedDateToday,
+                onReset: () => _confirmDailyReset(context, payments),
+              ),
               Expanded(
                 child: StreamBuilder<List<RepresentativeModel>>(
                   stream: viewModel.representativesStream,
@@ -88,7 +115,7 @@ class _PaymentsState extends State<Payments> {
                           payments,
                         );
 
-                        return _PaymentRepresentativeCard(
+                        return PaymentRepresentativeCard(
                           representative: representative,
                           payment: payment,
                           onEdit: () => _showPaymentSheet(
@@ -111,11 +138,81 @@ class _PaymentsState extends State<Payments> {
     );
   }
 
+  Future<void> _pickDate() async {
+    final picked = await showDatePicker(
+      context: context,
+      initialDate: viewModel.selectedDate,
+      firstDate: DateTime(2020),
+      lastDate: DateTime(2030),
+    );
+    if (picked != null) {
+      viewModel.selectDate(picked);
+    }
+  }
+
+  Future<void> _confirmDailyReset(
+    BuildContext context,
+    List<PaymentModel> payments,
+  ) async {
+    final messenger = ScaffoldMessenger.of(context);
+    final cancelText = AppLocalizations.of(context)!.cancel;
+    final formattedDate =
+        "${viewModel.selectedDate.year}-${viewModel.selectedDate.month.toString().padLeft(2, '0')}-${viewModel.selectedDate.day.toString().padLeft(2, '0')}";
+
+    final confirm = await showDialog<bool>(
+      context: context,
+      builder: (dialogContext) => AlertDialog(
+        title: const Row(
+          children: [
+            Icon(Icons.restart_alt, color: Colors.orange),
+            SizedBox(width: 8),
+            Text("Daily Reset"),
+          ],
+        ),
+        content: Text(
+          "Are you sure you want to reset all payment collections for $formattedDate?\n\nThis will reset collected amounts for this day to unpaid.",
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(dialogContext, false),
+            child: Text(cancelText),
+          ),
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
+            onPressed: () => Navigator.pop(dialogContext, true),
+            child: const Text(
+              "Reset Day",
+              style: TextStyle(color: Colors.white),
+            ),
+          ),
+        ],
+      ),
+    );
+
+    if (confirm == true) {
+      final success = await viewModel.resetSelectedDay(payments);
+      if (!mounted) return;
+      messenger.showSnackBar(
+        SnackBar(
+          content: Text(
+            success
+                ? "Daily reset completed for $formattedDate"
+                : "Failed to reset day payments",
+          ),
+        ),
+      );
+    }
+  }
+
+
   void _showPaymentSheet(
     RepresentativeModel representative,
     PaymentModel? payment,
   ) {
     viewModel.preparePayment(payment);
+    final formattedDate =
+        "${viewModel.selectedDate.year}-${viewModel.selectedDate.month.toString().padLeft(2, '0')}-${viewModel.selectedDate.day.toString().padLeft(2, '0')}";
+
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
@@ -143,12 +240,24 @@ class _PaymentsState extends State<Payments> {
                       Row(
                         children: [
                           Expanded(
-                            child: Text(
-                              representative.name,
-                              style: const TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w700,
-                              ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  representative.name,
+                                  style: const TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w700,
+                                  ),
+                                ),
+                                Text(
+                                  "Payment Date: $formattedDate",
+                                  style: const TextStyle(
+                                    fontSize: 13,
+                                    color: Colorsmanger.Grey,
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
                           IconButton(
@@ -230,10 +339,11 @@ class _PaymentsState extends State<Payments> {
   }
 
   Future<void> _savePayment(RepresentativeModel representative) async {
+    final messenger = ScaffoldMessenger.of(context);
     final isSaved = await viewModel.savePayment(representative);
     if (!mounted) return;
 
-    ScaffoldMessenger.of(context).showSnackBar(
+    messenger.showSnackBar(
       SnackBar(
         content: Text(
           isSaved ? "Payment saved successfully" : "Failed to save payment",
@@ -245,129 +355,9 @@ class _PaymentsState extends State<Payments> {
       Navigator.pop(context);
     }
   }
+
 }
 
-class _TotalMoneyCard extends StatelessWidget {
-  const _TotalMoneyCard({required this.total});
 
-  final double total;
 
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      margin: const EdgeInsets.all(16),
-      padding: const EdgeInsets.all(18),
-      decoration: BoxDecoration(
-        color: Colorsmanger.darkblue,
-        borderRadius: BorderRadius.circular(14),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Text(
-            "Total collected",
-            style: TextStyle(
-              color: Colorsmanger.Whiteblue,
-              fontSize: 14,
-            ),
-          ),
-          const SizedBox(height: 6),
-          Text(
-            "${total.toStringAsFixed(2)} EGP",
-            style: const TextStyle(
-              color: Colorsmanger.White,
-              fontSize: 28,
-              fontWeight: FontWeight.w800,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
 
-class _PaymentRepresentativeCard extends StatelessWidget {
-  const _PaymentRepresentativeCard({
-    required this.representative,
-    required this.payment,
-    required this.onEdit,
-  });
-
-  final RepresentativeModel representative;
-  final PaymentModel? payment;
-  final VoidCallback onEdit;
-
-  @override
-  Widget build(BuildContext context) {
-    final isPaid = payment?.isPaid ?? false;
-    final amount = payment?.amount ?? 0;
-    final method = payment?.paymentMethod ?? "Not selected";
-
-    return Card(
-      color: Colorsmanger.White,
-      elevation: 1,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      child: Padding(
-        padding: const EdgeInsets.all(14),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                Container(
-                  height: 42,
-                  width: 42,
-                  decoration: BoxDecoration(
-                    color: Colorsmanger.lightgrey,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: const Icon(Icons.person),
-                ),
-                const SizedBox(width: 12),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        representative.name,
-                        style: const TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
-                      Text(
-                        representative.phone,
-                        style: const TextStyle(color: Colorsmanger.Grey),
-                      ),
-                    ],
-                  ),
-                ),
-                StatusChip(status: isPaid ? "Paid" : "Not paid"),
-                IconButton(
-                  onPressed: onEdit,
-                  icon: const Icon(Icons.edit),
-                ),
-              ],
-            ),
-            const SizedBox(height: 12),
-            InfoRow(icon: Icons.motorcycle, text: representative.motorcycleId),
-            const SizedBox(height: 6),
-            InfoRow(
-              icon: Icons.payments,
-              text: "${amount.toStringAsFixed(2)} EGP",
-            ),
-            const SizedBox(height: 6),
-            InfoRow(icon: Icons.account_balance_wallet, text: method),
-            const SizedBox(height: 6),
-            InfoRow(
-              icon: Icons.calendar_month,
-              text:
-                  "${representative.rentalDate.year}-${representative.rentalDate.month}-${representative.rentalDate.day}",
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
