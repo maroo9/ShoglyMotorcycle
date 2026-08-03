@@ -1,6 +1,7 @@
 
 import 'package:flutter/cupertino.dart';
 
+import '../../fetures/Auth/forgetPassword/forgetPassword.dart';
 import '../../fetures/Auth/login/login.dart';
 import '../../fetures/Auth/rigester/rigester.dart';
 import '../../fetures/mainlayout/mainlayout.dart';
@@ -21,7 +22,7 @@ abstract class RoutesManager {
     Rigesters :(context)=>Register(),
     // Maps :(context)=>GoogleMaps(),
     // Chats:(context)=>ChatScreen(otherUserId: "",),
-    // ForgetPassword:(context)=>forgetPassword(),
+     ForgetPassword:(context)=>forgetPassword(),
 
   };
 }

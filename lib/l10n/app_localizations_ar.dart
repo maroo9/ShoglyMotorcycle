@@ -430,4 +430,13 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get could_not_load_motorcycles => 'تعذر تحميل بيانات الدراجات النارية';
+
+  @override
+  String get representative_start_date => 'تاريخ بدء عمل المندوب';
+
+  @override
+  String get motorcycle_number => 'رقم الدراجة النارية';
+
+  @override
+  String get owner_phone => 'رقم هاتف المالك';
 }

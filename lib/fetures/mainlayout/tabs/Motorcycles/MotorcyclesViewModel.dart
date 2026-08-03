@@ -12,6 +12,7 @@ class MotorcyclesViewModel extends ChangeNotifier {
   final TextEditingController licenseController = TextEditingController();
   final TextEditingController colorController = TextEditingController();
   final TextEditingController ownerController = TextEditingController();
+  final TextEditingController ownerPhoneController = TextEditingController();
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   String searchText = "";
@@ -61,6 +62,7 @@ class MotorcyclesViewModel extends ChangeNotifier {
         motorcycle.licenseNumber,
         motorcycle.color,
         motorcycle.ownerId,
+        motorcycle.ownerPhone,
         motorcycle.status,
       ].join(" ").toLowerCase();
 
@@ -81,6 +83,7 @@ class MotorcyclesViewModel extends ChangeNotifier {
       licenseNumber: licenseController.text.trim(),
       color: colorController.text.trim(),
       ownerId: ownerController.text.trim(),
+      ownerPhone: ownerPhoneController.text.trim(),
       driverId: null,
       imageUrl: "",
       status: "Available",
@@ -116,6 +119,7 @@ class MotorcyclesViewModel extends ChangeNotifier {
     licenseController.clear();
     colorController.clear();
     ownerController.clear();
+    ownerPhoneController.clear();
   }
 
   @override
@@ -126,6 +130,7 @@ class MotorcyclesViewModel extends ChangeNotifier {
     licenseController.dispose();
     colorController.dispose();
     ownerController.dispose();
+    ownerPhoneController.dispose();
     super.dispose();
   }
 

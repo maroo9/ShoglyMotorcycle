@@ -171,6 +171,10 @@
         "motorcycle_id_code": "معرف / كود الدراجة النارية",
         "could_not_load_representatives": "تعذر تحميل بيانات المندوبين",
         "no_representatives_found": "لا يوجد مندوبون",
-        "could_not_load_motorcycles": "تعذر تحميل بيانات الدراجات النارية"
+        "could_not_load_motorcycles": "تعذر تحميل بيانات الدراجات النارية",
+          "representative_start_date": "تاريخ بدء عمل المندوب",
+          "motorcycle_number": "رقم الدراجة النارية",
+          "owner_phone": "رقم هاتف المالك"
+
 
 }

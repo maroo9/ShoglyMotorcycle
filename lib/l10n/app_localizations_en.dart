@@ -430,4 +430,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get could_not_load_motorcycles => 'Could not load motorcycles';
+
+  @override
+  String get representative_start_date => 'Representative Start Date';
+
+  @override
+  String get motorcycle_number => 'Motorcycle Number';
+
+  @override
+  String get owner_phone => 'Owner Phone';
 }

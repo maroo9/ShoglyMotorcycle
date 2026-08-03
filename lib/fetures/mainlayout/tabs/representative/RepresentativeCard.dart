@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:shoghly/l10n/app_localizations.dart';
 
 import '../../../../Core/ColorsManger/Colorsmanger.dart';
 import '../../../../Core/Widgets/InfoTile.dart';
@@ -70,12 +71,14 @@ class RepresentativeCard extends StatelessWidget {
               icon: Icons.motorcycle,
               text: representative.motorcycleId,
             ),
+
             const SizedBox(height: 6),
             InfoRow(
               icon: Icons.calendar_month,
               text:
-              "${representative.rentalDate.year}-${representative.rentalDate.month}-${representative.rentalDate.day}",
+              AppLocalizations.of(context)!.representative_start_date+ " ${representative!.rentalDate.year}-${representative!.rentalDate.month}-${representative!.rentalDate.day}",
             ),
+
           ],
         ),
       ),

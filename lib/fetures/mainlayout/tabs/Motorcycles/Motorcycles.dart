@@ -207,7 +207,7 @@ SizedBox(height: 10,),
                   const SizedBox(height: 12),
                   MotorcycleInput(
                     controller: viewModel.modelController,
-                    label:  AppLocalizations.of(context)!.motorcycle_model,
+                    label:  AppLocalizations.of(context)!.motorcycle_number,
                     icon: Icons.description,
                     validator: viewModel.requiredValidator,
                   ),
@@ -230,6 +230,14 @@ SizedBox(height: 10,),
                     controller: viewModel.ownerController,
                     label:  AppLocalizations.of(context)!.owner_name,
                     icon: Icons.person,
+                    validator: viewModel.requiredValidator,
+                  ),
+                  const SizedBox(height: 12),
+                  MotorcycleInput(
+                    controller: viewModel.ownerPhoneController,
+                    label:   AppLocalizations.of(context)!.owner_phone,
+                    icon: Icons.phone,
+                    keyboardType: TextInputType.phone,
                     validator: viewModel.requiredValidator,
                   ),
                   const SizedBox(height: 18),
@@ -267,6 +275,5 @@ SizedBox(height: 10,),
     }
   }
 }
-
 
 

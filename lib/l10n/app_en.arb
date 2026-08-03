@@ -171,7 +171,13 @@
         "motorcycle_id_code": "Motorcycle ID / Code",
         "could_not_load_representatives": "Could not load representatives",
         "no_representatives_found": "No representatives found",
-        "could_not_load_motorcycles": "Could not load motorcycles"
+        "could_not_load_motorcycles": "Could not load motorcycles",
+          "representative_start_date": "Representative Start Date",
+            "motorcycle_number": "Motorcycle Number",
+              "owner_phone": "Owner Phone"
+
+
+
 
 
 }

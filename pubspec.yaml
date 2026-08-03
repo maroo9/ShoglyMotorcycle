@@ -90,7 +90,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
      - assets/images/img_1.png
-     - assets/images/sh8lny.png
+     - assets/images/Shoghly_Logo_Circular.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
@@ -120,4 +120,4 @@ flutter:
 flutter_launcher_icons:
   android: true
   ios: true
-  image_path: "assets/images/sh8lny.png"
+  image_path: "assets/images/Shoghly_Logo_Circular.jpg"

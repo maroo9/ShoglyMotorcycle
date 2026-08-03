@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 import '../../../../Core/Widgets/CustomTextForm.dart';
 
@@ -8,11 +8,13 @@ class MotorcycleInput extends StatelessWidget {
     required this.label,
     required this.icon,
     required this.validator,
+    this.keyboardType = TextInputType.text,
   });
 
   final TextEditingController controller;
   final String label;
   final IconData icon;
+  final TextInputType keyboardType;
   final String? Function(String?, String) validator;
 
   @override
@@ -21,6 +23,7 @@ class MotorcycleInput extends StatelessWidget {
       controller: controller,
       labelText: label,
       prefixIcon: icon,
+      keyboardType: keyboardType,
       validator: (value) => validator(value, label),
     );
   }

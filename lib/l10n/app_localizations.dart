@@ -940,6 +940,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Could not load motorcycles'**
   String get could_not_load_motorcycles;
+
+  /// No description provided for @representative_start_date.
+  ///
+  /// In en, this message translates to:
+  /// **'Representative Start Date'**
+  String get representative_start_date;
+
+  /// No description provided for @motorcycle_number.
+  ///
+  /// In en, this message translates to:
+  /// **'Motorcycle Number'**
+  String get motorcycle_number;
+
+  /// No description provided for @owner_phone.
+  ///
+  /// In en, this message translates to:
+  /// **'Owner Phone'**
+  String get owner_phone;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

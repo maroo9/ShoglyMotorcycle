@@ -5,6 +5,7 @@ import '../../../../Core/Widgets/InfoTile.dart';
 import '../../../../Core/Widgets/StatusChip.dart';
 import '../../../../Models/MotorcycleModel.dart';
 import '../../../../Models/representativeModel.dart';
+import '../../../../l10n/app_localizations.dart';
 
 class MotorcycleCard extends StatelessWidget {
   const MotorcycleCard({
@@ -43,7 +44,7 @@ class MotorcycleCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                       motorcycle.name,
+                        motorcycle.name,
                         style: const TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w700,
@@ -68,17 +69,26 @@ class MotorcycleCard extends StatelessWidget {
             const SizedBox(height: 6),
             InfoRow(icon: Icons.palette, text: motorcycle.color),
             const SizedBox(height: 6),
-            InfoRow(icon: Icons.person, text: motorcycle.ownerId),
-            if (representative != null) ...[
-              const SizedBox(height: 6),
-              InfoRow(
-                icon: Icons.badge,
-                text: representative!.name,
-              ),
+            InfoRow(icon: Icons.person, text:  AppLocalizations.of(context)!.owner_name +": ${motorcycle.ownerId}"),
+            if (motorcycle.ownerPhone.isNotEmpty) ...[
               const SizedBox(height: 6),
               InfoRow(
                 icon: Icons.phone,
-                text: representative!.phone,
+                text: "Owner Phone: ${motorcycle.ownerPhone}",
+              ),
+            ],
+            if (representative != null) ...[
+              const SizedBox(height: 6),
+              const SizedBox(height: 6),
+              InfoRow(
+                icon: Icons.phone,
+                text:  AppLocalizations.of(context)!.phone + "${representative!.phone}",
+              ),
+              const SizedBox(height: 6),
+              InfoRow(
+                icon: Icons.calendar_month,
+                text:
+                    "Representative Start Date: ${representative!.rentalDate.year}-${representative!.rentalDate.month}-${representative!.rentalDate.day}",
               ),
             ],
           ],
