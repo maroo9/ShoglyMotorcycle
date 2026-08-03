@@ -85,11 +85,7 @@ class MotorcycleCard extends StatelessWidget {
                 text:  AppLocalizations.of(context)!.phone + "${representative!.phone}",
               ),
               const SizedBox(height: 6),
-              InfoRow(
-                icon: Icons.calendar_month,
-                text:
-                    "Representative Start Date: ${representative!.rentalDate.year}-${representative!.rentalDate.month}-${representative!.rentalDate.day}",
-              ),
+
             ],
           ],
         ),
