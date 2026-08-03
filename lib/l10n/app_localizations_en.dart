@@ -439,4 +439,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get owner_phone => 'Owner Phone';
+
+  @override
+  String get representative_phone => 'Representative Phone';
+
+  @override
+  String get total_collected_today => 'Total Collected Today';
+
+  @override
+  String get reset_day => 'Reset Day';
 }

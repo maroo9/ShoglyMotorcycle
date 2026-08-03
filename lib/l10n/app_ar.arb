@@ -174,7 +174,11 @@
         "could_not_load_motorcycles": "تعذر تحميل بيانات الدراجات النارية",
           "representative_start_date": "تاريخ بدء عمل المندوب",
           "motorcycle_number": "رقم الدراجة النارية",
-          "owner_phone": "رقم هاتف المالك"
-
+          "owner_phone": "رقم هاتف المالك",
+ "representative_phone": "رقم هاتف المندوب",
+  "available": "متاح",
+  "active": "نشط",
+  "total_collected_today": "إجمالي المحصل اليوم",
+  "reset_day": "إعادة تعيين اليوم"
 
 }

@@ -174,7 +174,12 @@
         "could_not_load_motorcycles": "Could not load motorcycles",
           "representative_start_date": "Representative Start Date",
             "motorcycle_number": "Motorcycle Number",
-              "owner_phone": "Owner Phone"
+              "owner_phone": "Owner Phone",
+                "representative_phone": "Representative Phone",
+                "available": "Available",
+                "active": "Active",
+                "total_collected_today": "Total Collected Today",
+                "reset_day": "Reset Day"
 
 
 

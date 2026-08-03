@@ -141,7 +141,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get status => 'الحالة';
 
   @override
-  String get available => 'متاحة';
+  String get available => 'متاح';
 
   @override
   String get rented => 'مؤجرة';
@@ -439,4 +439,13 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get owner_phone => 'رقم هاتف المالك';
+
+  @override
+  String get representative_phone => 'رقم هاتف المندوب';
+
+  @override
+  String get total_collected_today => 'إجمالي المحصل اليوم';
+
+  @override
+  String get reset_day => 'إعادة تعيين اليوم';
 }

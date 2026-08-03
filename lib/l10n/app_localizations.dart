@@ -958,6 +958,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Owner Phone'**
   String get owner_phone;
+
+  /// No description provided for @representative_phone.
+  ///
+  /// In en, this message translates to:
+  /// **'Representative Phone'**
+  String get representative_phone;
+
+  /// No description provided for @total_collected_today.
+  ///
+  /// In en, this message translates to:
+  /// **'Total Collected Today'**
+  String get total_collected_today;
+
+  /// No description provided for @reset_day.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset Day'**
+  String get reset_day;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

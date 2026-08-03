@@ -58,7 +58,7 @@ class MotorcycleCard extends StatelessWidget {
                   ),
                 ),
                 StatusChip(
-                  status: representative == null ? "Available" : "Rented",
+                  status: representative == null ? AppLocalizations.of(context)!.available: AppLocalizations.of(context)!.rented,
                 ),
               ],
             ),
@@ -74,7 +74,7 @@ class MotorcycleCard extends StatelessWidget {
               const SizedBox(height: 6),
               InfoRow(
                 icon: Icons.phone,
-                text: "Owner Phone: ${motorcycle.ownerPhone}",
+                text:  AppLocalizations.of(context)!.owner_phone+" ${motorcycle.ownerPhone}",
               ),
             ],
             if (representative != null) ...[
@@ -82,7 +82,7 @@ class MotorcycleCard extends StatelessWidget {
               const SizedBox(height: 6),
               InfoRow(
                 icon: Icons.phone,
-                text:  AppLocalizations.of(context)!.phone + "${representative!.phone}",
+                text:  AppLocalizations.of(context)!.representative_phone + "${representative!.phone}",
               ),
               const SizedBox(height: 6),
 
