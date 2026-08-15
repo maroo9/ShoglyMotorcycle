@@ -23,9 +23,10 @@ class HomeViewModel extends ChangeNotifier {
     return FirebaseServices.streamMaintenance();
   }
 
-  double totalCollected(List<PaymentModel> payments) {
+  double totalCollected(List<PaymentModel> payments, {DateTime? date}) {
+    final targetDate = date ?? DateTime.now();
     return payments
-        .where((payment) => payment.isPaid)
+        .where((payment) => payment.isPaid && payment.isSameDay(targetDate))
         .fold(0, (total, payment) => total + payment.amount);
   }
 
@@ -64,7 +65,10 @@ class HomeViewModel extends ChangeNotifier {
         .length;
   }
 
-  int pendingPayments(List<PaymentModel> payments) {
-    return payments.where((payment) => !payment.isPaid).length;
+  int pendingPayments(List<PaymentModel> payments, {DateTime? date}) {
+    final targetDate = date ?? DateTime.now();
+    return payments
+        .where((payment) => !payment.isPaid && payment.isSameDay(targetDate))
+        .length;
   }
 }

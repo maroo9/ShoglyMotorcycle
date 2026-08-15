@@ -309,13 +309,13 @@ class _PaymentsState extends State<Payments> {
                           viewModel.updatePaidStatus(value);
                           setSheetState(() {});
                         },
-                        title: const Text("Rent paid"),
+                        title: Text(AppLocalizations.of(context)!.rent_paid),
                         contentPadding: EdgeInsets.zero,
                       ),
                       const SizedBox(height: 12),
                       CustomTextForm(
                         controller: viewModel.notesController,
-                        labelText: "Notes",
+                        labelText: AppLocalizations.of(context)!.notes,
                         prefixIcon: Icons.notes,
                         validator: (_) => null,
                         Lines: 2,

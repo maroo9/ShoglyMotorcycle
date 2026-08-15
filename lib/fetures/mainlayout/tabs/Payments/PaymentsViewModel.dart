@@ -48,15 +48,7 @@ class PaymentsViewModel extends ChangeNotifier {
   }
 
   Stream<List<PaymentModel>> get paymentsStream {
-    return FirebaseFirestore.instance
-        .collection("Payments")
-        .withConverter<PaymentModel>(
-          fromFirestore: (snapshot, _) =>
-              PaymentModel.fromJson(snapshot.data() ?? {}),
-          toFirestore: (payment, _) => payment.toJson(),
-        )
-        .snapshots()
-        .map((query) => query.docs.map((doc) => doc.data()).toList());
+    return FirebaseServices.streamPayments();
   }
 
   PaymentModel? paymentForRepresentative(

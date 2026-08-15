@@ -581,12 +581,6 @@ abstract class AppLocalizations {
   /// **'Maintenance Date'**
   String get maintenance_date;
 
-  /// No description provided for @technician.
-  ///
-  /// In en, this message translates to:
-  /// **'Technician'**
-  String get technician;
-
   /// No description provided for @service_details.
   ///
   /// In en, this message translates to:
@@ -776,7 +770,7 @@ abstract class AppLocalizations {
   /// No description provided for @no_maintenance.
   ///
   /// In en, this message translates to:
-  /// **'No maintenance records found.'**
+  /// **'No maintenance'**
   String get no_maintenance;
 
   /// No description provided for @success.
@@ -976,6 +970,84 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Reset Day'**
   String get reset_day;
+
+  /// No description provided for @pending_maintenance.
+  ///
+  /// In en, this message translates to:
+  /// **'Pending Maintenance'**
+  String get pending_maintenance;
+
+  /// No description provided for @shortcuts.
+  ///
+  /// In en, this message translates to:
+  /// **'Shortcuts'**
+  String get shortcuts;
+
+  /// No description provided for @add_and_inspect_motorcycles.
+  ///
+  /// In en, this message translates to:
+  /// **'Add and Inspect Motorcycles'**
+  String get add_and_inspect_motorcycles;
+
+  /// No description provided for @assign_rented_motorcycles.
+  ///
+  /// In en, this message translates to:
+  /// **'Assign Rented Motorcycles'**
+  String get assign_rented_motorcycles;
+
+  /// No description provided for @pending_rent_payments.
+  ///
+  /// In en, this message translates to:
+  /// **'Pending Rent Payments'**
+  String get pending_rent_payments;
+
+  /// No description provided for @not_paid.
+  ///
+  /// In en, this message translates to:
+  /// **'Not Paid'**
+  String get not_paid;
+
+  /// No description provided for @notes.
+  ///
+  /// In en, this message translates to:
+  /// **'Notes'**
+  String get notes;
+
+  /// No description provided for @tires.
+  ///
+  /// In en, this message translates to:
+  /// **'Tires'**
+  String get tires;
+
+  /// No description provided for @what_it_needs.
+  ///
+  /// In en, this message translates to:
+  /// **'What it needs'**
+  String get what_it_needs;
+
+  /// No description provided for @inactive.
+  ///
+  /// In en, this message translates to:
+  /// **'Inactive'**
+  String get inactive;
+
+  /// No description provided for @paid.
+  ///
+  /// In en, this message translates to:
+  /// **'Paid'**
+  String get paid;
+
+  /// No description provided for @rent_paid.
+  ///
+  /// In en, this message translates to:
+  /// **'Rent Paid'**
+  String get rent_paid;
+
+  /// No description provided for @technician_name.
+  ///
+  /// In en, this message translates to:
+  /// **'اسم الفني'**
+  String get technician_name;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

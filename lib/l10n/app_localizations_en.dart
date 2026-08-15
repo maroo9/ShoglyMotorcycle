@@ -252,9 +252,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get maintenance_date => 'Maintenance Date';
 
   @override
-  String get technician => 'Technician';
-
-  @override
   String get service_details => 'Service Details';
 
   @override
@@ -348,7 +345,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get no_payments => 'No payment records found.';
 
   @override
-  String get no_maintenance => 'No maintenance records found.';
+  String get no_maintenance => 'No maintenance';
 
   @override
   String get success => 'Success';
@@ -448,4 +445,43 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get reset_day => 'Reset Day';
+
+  @override
+  String get pending_maintenance => 'Pending Maintenance';
+
+  @override
+  String get shortcuts => 'Shortcuts';
+
+  @override
+  String get add_and_inspect_motorcycles => 'Add and Inspect Motorcycles';
+
+  @override
+  String get assign_rented_motorcycles => 'Assign Rented Motorcycles';
+
+  @override
+  String get pending_rent_payments => 'Pending Rent Payments';
+
+  @override
+  String get not_paid => 'Not Paid';
+
+  @override
+  String get notes => 'Notes';
+
+  @override
+  String get tires => 'Tires';
+
+  @override
+  String get what_it_needs => 'What it needs';
+
+  @override
+  String get inactive => 'Inactive';
+
+  @override
+  String get paid => 'Paid';
+
+  @override
+  String get rent_paid => 'Rent Paid';
+
+  @override
+  String get technician_name => 'اسم الفني';
 }

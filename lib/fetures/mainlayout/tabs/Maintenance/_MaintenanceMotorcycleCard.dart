@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shoghly/l10n/app_localizations.dart';
 
 import '../../../../Core/ColorsManger/Colorsmanger.dart';
 import '../../../../Core/Widgets/InfoTile.dart';
@@ -20,7 +21,7 @@ class MaintenanceMotorcycleCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final status = maintenance?.status ?? "No maintenance";
+    final status = maintenance?.status ?? AppLocalizations.of(context)!.no_maintenance;
     final cost = maintenance?.cost ?? 0;
 
     return Card(
@@ -81,12 +82,16 @@ class MaintenanceMotorcycleCard extends StatelessWidget {
               const SizedBox(height: 10),
               InfoRow(
                 icon: Icons.build,
-                text: maintenance!.maintenanceType,
+                text: maintenance!.maintenanceType.isEmpty
+                    ? AppLocalizations.of(context)!.maintenance_type
+                    : maintenance!.maintenanceType,
               ),
               const SizedBox(height: 6),
               InfoRow(
                 icon: Icons.handyman,
-                text: maintenance!.technician,
+                text: maintenance!.technician.isEmpty
+                    ? AppLocalizations.of(context)!.technician_name
+                    : maintenance!.technician,
               ),
               const SizedBox(height: 6),
               InfoRow(

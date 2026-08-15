@@ -252,9 +252,6 @@ class AppLocalizationsAr extends AppLocalizations {
   String get maintenance_date => 'تاريخ الصيانة';
 
   @override
-  String get technician => 'الفني';
-
-  @override
   String get service_details => 'تفاصيل الخدمة';
 
   @override
@@ -327,7 +324,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get date => 'التاريخ';
 
   @override
-  String get active => 'نشط';
+  String get active => 'يعمل حاليًا';
 
   @override
   String get completed => 'مكتمل';
@@ -348,7 +345,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get no_payments => 'لا توجد سجلات مدفوعات.';
 
   @override
-  String get no_maintenance => 'لا توجد سجلات صيانة.';
+  String get no_maintenance => 'لا توجد صيانة';
 
   @override
   String get success => 'تم بنجاح';
@@ -448,4 +445,43 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get reset_day => 'إعادة تعيين اليوم';
+
+  @override
+  String get pending_maintenance => 'الصيانة المعلقة';
+
+  @override
+  String get shortcuts => 'اختصارات';
+
+  @override
+  String get add_and_inspect_motorcycles => 'إضافة وفحص الدراجات النارية';
+
+  @override
+  String get assign_rented_motorcycles => 'تخصيص الدراجات النارية المؤجرة';
+
+  @override
+  String get pending_rent_payments => 'مدفوعات الإيجار المعلقة';
+
+  @override
+  String get not_paid => 'غير مدفوع';
+
+  @override
+  String get notes => 'ملاحظات';
+
+  @override
+  String get tires => 'Tires';
+
+  @override
+  String get what_it_needs => 'ما الذي يحتاج إلى صيانة';
+
+  @override
+  String get inactive => 'لا يعمل حاليًا';
+
+  @override
+  String get paid => 'مدفوع';
+
+  @override
+  String get rent_paid => 'تم دفع الإيجار';
+
+  @override
+  String get technician_name => 'اسم الفني';
 }

@@ -109,20 +109,20 @@ class _HomeState extends State<Home> {
                                     DashboardStats(
                                       items: [
                                         DashboardStatItem(
-                                          title: "Total money",
+                                          title: AppLocalizations.of(context)!.total_collected_today,
                                           value:
                                               "${viewModel.totalCollected(payments).toStringAsFixed(0)} EGP",
                                           icon: Icons.payments,
                                           color: Colors.green,
                                         ),
                                         DashboardStatItem(
-                                          title: "Motors",
+                                          title: AppLocalizations.of(context)!.motorcycles,
                                           value: motorcycles.length.toString(),
                                           icon: Icons.motorcycle,
                                           color: Colorsmanger.Blue,
                                         ),
                                         DashboardStatItem(
-                                          title: "Rented",
+                                          title: AppLocalizations.of(context)!.rented,
                                           value: viewModel
                                               .rentedMotorcycles(
                                                 motorcycles,
@@ -133,7 +133,7 @@ class _HomeState extends State<Home> {
                                           color: Colors.orange,
                                         ),
                                         DashboardStatItem(
-                                          title: "Available",
+                                          title: AppLocalizations.of(context)!.available,
                                           value: viewModel
                                               .availableMotorcycles(
                                                 motorcycles,
@@ -144,14 +144,14 @@ class _HomeState extends State<Home> {
                                           color: Colors.teal,
                                         ),
                                         DashboardStatItem(
-                                          title: "Representatives",
+                                          title: AppLocalizations.of(context)!.representative,
                                           value:
                                               representatives.length.toString(),
                                           icon: Icons.people,
                                           color: Colors.purple,
                                         ),
                                         DashboardStatItem(
-                                          title: "Pending maint.",
+                                          title:  AppLocalizations.of(context)!.pending_maintenance,
                                           value: viewModel
                                               .pendingMaintenance(maintenances)
                                               .toString(),
@@ -161,38 +161,38 @@ class _HomeState extends State<Home> {
                                       ],
                                     ),
                                     const SizedBox(height: 22),
-                                    const _SectionTitle(title: "Shortcuts"),
+                                     _SectionTitle(title:  AppLocalizations.of(context)!.shortcuts),
                                     const SizedBox(height: 10),
                                     HomeShortcuts(
                                       items: [
                                         HomeShortcutItem(
-                                          title: "Motorcycles",
-                                          subtitle: "Add and inspect motors",
+                                          title: AppLocalizations.of(context)!.motorcycles,
+                                          subtitle: AppLocalizations.of(context)!.add_and_inspect_motorcycles,
                                           icon: Icons.motorcycle,
                                           color: Colorsmanger.Blue,
                                           onTap: () =>
                                               widget.onShortcutSelected(1),
                                         ),
                                         HomeShortcutItem(
-                                          title: "Representatives",
+                                          title: AppLocalizations.of(context)!.representative,
                                           subtitle:
-                                              "Assign rented motorcycles",
+                                          AppLocalizations.of(context)!.assign_rented_motorcycles,
                                           icon: Icons.person,
                                           color: Colors.purple,
                                           onTap: () =>
                                               widget.onShortcutSelected(2),
                                         ),
                                         HomeShortcutItem(
-                                          title: "Payments",
+                                          title:AppLocalizations.of(context)!.payments,
                                           subtitle:
-                                              "${viewModel.pendingPayments(payments)} pending rent payments",
+                                              "${viewModel.pendingPayments(payments)} "+ AppLocalizations.of(context)!.pending_rent_payments,
                                           icon: Icons.monetization_on,
                                           color: Colors.green,
                                           onTap: () =>
                                               widget.onShortcutSelected(3),
                                         ),
                                         HomeShortcutItem(
-                                          title: "Maintenance",
+                                          title:AppLocalizations.of(context)!.maintenance,
                                           subtitle:
                                               "${viewModel.pendingMaintenance(maintenances)} open jobs",
                                           icon: Icons.settings,
@@ -270,7 +270,7 @@ class _HomeHeader extends StatelessWidget {
                     ),
                     SizedBox(width: 4),
                     Text(
-                      "Cairo, Egypt",
+                      "PortSaid, Egypt",
                       style: TextStyle(color: Colorsmanger.Whiteblue),
                     ),
                   ],

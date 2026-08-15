@@ -141,10 +141,9 @@ class _MaintanceState extends State<Maintance> {
                   (motorcycle) =>
                       motorcycle.id == viewModel.selectedMotorcycleId,
                 );
-                final selectedMotorcycleId =
-                    selectedMatches.length == 1
-                        ? viewModel.selectedMotorcycleId
-                        : null;
+                final selectedMotorcycleId = selectedMatches.length == 1
+                    ? viewModel.selectedMotorcycleId
+                    : null;
 
                 return Padding(
                   padding: EdgeInsets.only(
@@ -162,10 +161,10 @@ class _MaintanceState extends State<Maintance> {
                         children: [
                           Row(
                             children: [
-                              const Expanded(
+                              Expanded(
                                 child: Text(
-                                  "Maintenance",
-                                  style: TextStyle(
+                                  AppLocalizations.of(context)!.maintenance,
+                                  style: const TextStyle(
                                     fontSize: 20,
                                     fontWeight: FontWeight.w700,
                                   ),
@@ -183,7 +182,8 @@ class _MaintanceState extends State<Maintance> {
                             validator: viewModel.motorcycleValidator,
                             isExpanded: true,
                             decoration: InputDecoration(
-                              labelText: "Motorcycle id / code",
+                              labelText: AppLocalizations.of(context)!
+                                  .motorcycle_id_code,
                               prefixIcon: const Icon(Icons.motorcycle),
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(10),
@@ -204,39 +204,34 @@ class _MaintanceState extends State<Maintance> {
                             },
                           ),
                           const SizedBox(height: 12),
-                          DropdownButtonFormField<String>(
-                            value: viewModel.maintenanceType,
-                            isExpanded: true,
-                            decoration: InputDecoration(
-                              labelText: "Maintenance type",
-                              prefixIcon: const Icon(Icons.build),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                            ),
-                            items: viewModel.maintenanceTypes.map((type) {
-                              return DropdownMenuItem(
-                                value: type,
-                                child: Text(type),
-                              );
-                            }).toList(),
-                            onChanged: (value) {
-                              viewModel.selectMaintenanceType(value);
-                              setSheetState(() {});
-                            },
+                          CustomTextForm(
+                            controller: viewModel.maintenanceTypeController,
+                            labelText:
+                                AppLocalizations.of(context)!.maintenance_type,
+                            prefixIcon: Icons.build,
+                            validator: (value) =>
+                                viewModel.requiredValidator(
+                                  value,
+                                  AppLocalizations.of(context)!
+                                      .maintenance_type,
+                                ),
                           ),
                           const SizedBox(height: 12),
                           CustomTextForm(
                             controller: viewModel.neededWorkController,
-                            labelText: "What it needs",
+                            labelText:
+                               AppLocalizations.of(context)!.technician_name,
                             prefixIcon: Icons.handyman,
                             validator: (value) =>
-                                viewModel.requiredValidator(value, "Needed work"),
+                                viewModel.requiredValidator(
+                                  value,
+                                  "Needed work",
+                                ),
                           ),
                           const SizedBox(height: 12),
                           CustomTextForm(
                             controller: viewModel.costController,
-                            labelText: "Amount",
+                            labelText: AppLocalizations.of(context)!.amount_paid,
                             prefixIcon: Icons.payments,
                             keyboardType: TextInputType.number,
                             validator: viewModel.costValidator,
@@ -246,7 +241,7 @@ class _MaintanceState extends State<Maintance> {
                             value: viewModel.status,
                             isExpanded: true,
                             decoration: InputDecoration(
-                              labelText: "Status",
+                              labelText: AppLocalizations.of(context)!.status,
                               prefixIcon: const Icon(Icons.flag),
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(10),
@@ -266,7 +261,7 @@ class _MaintanceState extends State<Maintance> {
                           const SizedBox(height: 12),
                           CustomTextForm(
                             controller: viewModel.notesController,
-                            labelText: "Notes",
+                            labelText: AppLocalizations.of(context)!.notes,
                             prefixIcon: Icons.notes,
                             validator: (_) => null,
                             Lines: 2,
@@ -320,4 +315,3 @@ class _MaintanceState extends State<Maintance> {
     }
   }
 }
-

@@ -179,6 +179,29 @@
   "available": "متاح",
   "active": "نشط",
   "total_collected_today": "إجمالي المحصل اليوم",
-  "reset_day": "إعادة تعيين اليوم"
+  "reset_day": "إعادة تعيين اليوم",
+  "pending_maintenance": "الصيانة المعلقة",
+  "shortcuts": "اختصارات",
+  "add_and_inspect_motorcycles": "إضافة وفحص الدراجات النارية",
+  "assign_rented_motorcycles": "تخصيص الدراجات النارية المؤجرة",
+  "pending_rent_payments": "مدفوعات الإيجار المعلقة",
+  "total_collected_today": "إجمالي المحصل اليوم",
+  "not_paid": "غير مدفوع",
+"reset_day_ar": "يوم إعادة التعيين",
+"notes_ar": "ملاحظات",
+"oil_change_ar": "تغيير الزيت",
+"tires_ar": "الإطارات",
+"brake_service_ar": "صيانة الفرامل",
+"engine_repair_ar": "إصلاح المحرك",
+"general_service_ar": "صيانة عامة",
+"pending_ar": "قيد الانتظار",
+"what_it_needs": "ما الذي يحتاج إلى صيانة",
+"notes": "ملاحظات",
+"active": "يعمل حاليًا",
+"inactive": "لا يعمل حاليًا",
+"no_maintenance": "لا توجد صيانة",
+"paid": "مدفوع",
+"rent_paid": "تم دفع الإيجار"
+
 
 }

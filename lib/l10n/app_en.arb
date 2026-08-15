@@ -94,7 +94,6 @@
   "maintenance_type": "Maintenance Type",
   "maintenance_cost": "Maintenance Cost",
   "maintenance_date": "Maintenance Date",
-  "technician": "Technician",
   "service_details": "Service Details",
   "next_service": "Next Service",
   "mark_completed": "Mark Completed",
@@ -179,10 +178,31 @@
                 "available": "Available",
                 "active": "Active",
                 "total_collected_today": "Total Collected Today",
-                "reset_day": "Reset Day"
-
-
-
-
+                "reset_day": "Reset Day",
+                "pending_maintenance": "Pending Maintenance",
+                "shortcuts": "Shortcuts",
+                "add_and_inspect_motorcycles": "Add and Inspect Motorcycles",
+                "assign_rented_motorcycles": "Assign Rented Motorcycles",
+                "pending_rent_payments": "Pending Rent Payments",
+                "total_collected_today": "Total Collected Today",
+                "not_paid": "Not Paid",
+                "reset_day": "Reset Day",
+                "notes": "Notes",
+                "oil_change": "Oil Change",
+                "tires": "Tires",
+                "brake_service": "Brake Service",
+                "engine_repair": "Engine Repair",
+                "general_service": "General Service",
+                "pending": "Pending",
+                "completed": "Completed",
+                "what_it_needs": "What it needs",
+                "notes": "Notes",
+                "active": "Active",
+                "inactive": "Inactive",
+                "no_maintenance": "No maintenance",
+                "paid": "Paid",
+                "rent_paid": "Rent Paid",
+                "technician_name": "Technician",
+                "technician_name": "اسم الفني"
 
 }

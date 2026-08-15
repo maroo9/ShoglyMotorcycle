@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shoghly/l10n/app_localizations.dart';
 
 import '../../../../Core/ColorsManger/Colorsmanger.dart';
 import '../../../../Core/Widgets/InfoTile.dart';
@@ -63,7 +64,7 @@ class PaymentRepresentativeCard extends StatelessWidget {
                     ],
                   ),
                 ),
-                StatusChip(status: isPaid ? "Paid" : "Not paid"),
+                StatusChip(status: isPaid ? AppLocalizations.of(context)!.paid :  AppLocalizations.of(context)!.not_paid),
                 IconButton(
                   onPressed: onEdit,
                   icon: const Icon(Icons.edit),

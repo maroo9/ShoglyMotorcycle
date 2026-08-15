@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shoghly/l10n/app_localizations.dart';
 
 import '../../../../Core/ColorsManger/Colorsmanger.dart';
 
@@ -35,7 +36,7 @@ class TotalMoneyCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  isToday ? "Total collected today" : "Total collected on $dateText",
+                  isToday ? AppLocalizations.of(context)!.total_collected_today: "Total collected on $dateText",
                   style: const TextStyle(
                     color: Colorsmanger.Whiteblue,
                     fontSize: 14,
@@ -63,7 +64,7 @@ class TotalMoneyCard extends StatelessWidget {
             ),
             onPressed: onReset,
             icon: const Icon(Icons.restart_alt, size: 18),
-            label: const Text("Reset Day"),
+            label:  Text(AppLocalizations.of(context)!.reset_day),
           ),
         ],
       ),

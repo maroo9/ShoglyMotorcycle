@@ -9,22 +9,15 @@ class MaintanceViewModel extends ChangeNotifier {
   final TextEditingController costController = TextEditingController();
   final TextEditingController notesController = TextEditingController();
   final TextEditingController neededWorkController = TextEditingController();
+  final TextEditingController maintenanceTypeController =
+      TextEditingController();
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   String? selectedMotorcycleId;
-  String maintenanceType = "Oil Change";
   String status = "Pending";
   bool isSaving = false;
 
-  final List<String> maintenanceTypes = const [
-    "Oil Change",
-    "Tires",
-    "Brake Service",
-    "Engine Repair",
-    "General Service",
-  ];
-
-  final List<String> statuses = const [
+  final List<String> statuses = [
     "Pending",
     "Completed",
   ];
@@ -62,9 +55,7 @@ class MaintanceViewModel extends ChangeNotifier {
     MaintenanceModel? maintenance,
   }) {
     selectedMotorcycleId = motorcycle?.id ?? maintenance?.motorcycleId;
-    maintenanceType = maintenance?.maintenanceType.isNotEmpty == true
-        ? maintenance!.maintenanceType
-        : "Oil Change";
+    maintenanceTypeController.text = maintenance?.maintenanceType ?? "";
     status = maintenance?.status.isNotEmpty == true
         ? maintenance!.status
         : "Pending";
@@ -76,12 +67,6 @@ class MaintanceViewModel extends ChangeNotifier {
 
   void selectMotorcycle(String? motorcycleId) {
     selectedMotorcycleId = motorcycleId;
-    notifyListeners();
-  }
-
-  void selectMaintenanceType(String? type) {
-    if (type == null) return;
-    maintenanceType = type;
     notifyListeners();
   }
 
@@ -101,7 +86,7 @@ class MaintanceViewModel extends ChangeNotifier {
     final maintenance = MaintenanceModel(
       id: selectedMotorcycleId!,
       motorcycleId: selectedMotorcycleId!,
-      maintenanceType: maintenanceType,
+      maintenanceType: maintenanceTypeController.text.trim(),
       cost: double.tryParse(costController.text.trim()) ?? 0,
       technician: neededWorkController.text.trim(),
       status: status,
@@ -144,13 +129,15 @@ class MaintanceViewModel extends ChangeNotifier {
   }
 
   bool _motorcycleIdExists(List<MotorcycleModel> motorcycles) {
-    return motorcycles.any((motorcycle) => motorcycle.id == selectedMotorcycleId);
+    return motorcycles.any(
+      (motorcycle) => motorcycle.id == selectedMotorcycleId,
+    );
   }
 
   void clearForm() {
     selectedMotorcycleId = null;
-    maintenanceType = "Oil Change";
     status = "Pending";
+    maintenanceTypeController.clear();
     costController.clear();
     notesController.clear();
     neededWorkController.clear();
@@ -158,6 +145,7 @@ class MaintanceViewModel extends ChangeNotifier {
 
   @override
   void dispose() {
+    maintenanceTypeController.dispose();
     costController.dispose();
     notesController.dispose();
     neededWorkController.dispose();

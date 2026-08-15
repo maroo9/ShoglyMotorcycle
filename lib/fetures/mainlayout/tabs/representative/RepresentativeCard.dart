@@ -58,7 +58,7 @@ class RepresentativeCard extends StatelessWidget {
                   ),
                 ),
                 StatusChip(
-                  status: representative.isActive ? "Active" : "Inactive",
+                  status: representative.isActive ? AppLocalizations.of(context)!.active : AppLocalizations.of(context)!.inactive,
                 ),
                 IconButton(
                   onPressed: onDelete,
