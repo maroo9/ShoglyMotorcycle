@@ -17,6 +17,7 @@ class MotorcyclesViewModel extends ChangeNotifier {
 
   String searchText = "";
   bool isSaving = false;
+  MotorcycleModel? editingMotorcycle;
   FloatingActionButtonLocation fabLocation =
       FloatingActionButtonLocation.endFloat;
 
@@ -70,24 +71,39 @@ class MotorcyclesViewModel extends ChangeNotifier {
     }).toList();
   }
 
-  Future<bool> addMotorcycle() async {
+  void prepareForm([MotorcycleModel? motorcycle]) {
+    editingMotorcycle = motorcycle;
+    nameController.text = motorcycle?.name ?? "";
+    modelController.text = motorcycle?.model ?? "";
+    licenseController.text = motorcycle?.licenseNumber ?? "";
+    colorController.text = motorcycle?.color ?? "";
+    ownerController.text = motorcycle?.ownerId ?? "";
+    ownerPhoneController.text = motorcycle?.ownerPhone ?? "";
+    notifyListeners();
+  }
+
+  Future<bool> saveMotorcycle() async {
     if (formKey.currentState?.validate() != true) return false;
 
     isSaving = true;
     notifyListeners();
 
+    final currentMotorcycle = editingMotorcycle;
     final motorcycle = MotorcycleModel(
-      id: "motor_${DateTime.now().microsecondsSinceEpoch}",
+      id: currentMotorcycle?.id ??
+          "motor_${DateTime.now().microsecondsSinceEpoch}",
       name: nameController.text.trim(),
       model: modelController.text.trim(),
       licenseNumber: licenseController.text.trim(),
       color: colorController.text.trim(),
       ownerId: ownerController.text.trim(),
       ownerPhone: ownerPhoneController.text.trim(),
-      driverId: null,
-      imageUrl: "",
-      status: "Available",
-      createdAt: Timestamp.now(),
+      driverId: currentMotorcycle?.driverId,
+      imageUrl: currentMotorcycle?.imageUrl ?? "",
+      status: currentMotorcycle?.status ?? "Available",
+      createdAt: currentMotorcycle?.createdAt ?? Timestamp.now(),
+      representativeId: currentMotorcycle?.representativeId,
+      isRented: currentMotorcycle?.isRented ?? false,
     );
 
     try {
@@ -114,6 +130,7 @@ class MotorcyclesViewModel extends ChangeNotifier {
   }
 
   void clearForm() {
+    editingMotorcycle = null;
     nameController.clear();
     modelController.clear();
     licenseController.clear();

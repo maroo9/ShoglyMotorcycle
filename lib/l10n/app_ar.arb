@@ -201,7 +201,8 @@
 "inactive": "لا يعمل حاليًا",
 "no_maintenance": "لا توجد صيانة",
 "paid": "مدفوع",
-"rent_paid": "تم دفع الإيجار"
+"rent_paid": "تم دفع الإيجار",
+"subscription_renewal_date": "تاريخ تجديد الاشتراك"
 
 
 }

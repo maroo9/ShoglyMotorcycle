@@ -1046,8 +1046,14 @@ abstract class AppLocalizations {
   /// No description provided for @technician_name.
   ///
   /// In en, this message translates to:
-  /// **'اسم الفني'**
+  /// **'Technician'**
   String get technician_name;
+
+  /// No description provided for @subscription_renewal_date.
+  ///
+  /// In en, this message translates to:
+  /// **'Subscription Renewal Date'**
+  String get subscription_renewal_date;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

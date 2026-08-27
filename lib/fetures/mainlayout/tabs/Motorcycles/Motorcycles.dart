@@ -57,7 +57,7 @@ class _MotorcyclesState extends State<Motorcycles> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colorsmanger.darkblue,
         foregroundColor: Colorsmanger.White,
-        onPressed: _showAddMotorcycleSheet,
+        onPressed: () => _showMotorcycleSheet(),
         child: const Icon(Icons.add),
       ),
       floatingActionButtonLocation: const RaisedEndFloatLocation(),
@@ -121,6 +121,7 @@ SizedBox(height: 10,),
                             motorcycle,
                             representatives,
                           ),
+                          onEdit: () => _showMotorcycleSheet(motorcycle),
                         );
                   },
                   separatorBuilder: (context, index) =>
@@ -156,8 +157,10 @@ SizedBox(height: 10,),
   }
 
 
-  void _showAddMotorcycleSheet() {
-    viewModel.clearForm();
+  void _showMotorcycleSheet([MotorcycleModel? motorcycle]) {
+    viewModel.prepareForm(motorcycle);
+    final isEditing = motorcycle != null;
+
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
@@ -184,8 +187,10 @@ SizedBox(height: 10,),
                     children: [
                        Expanded(
                         child: Text(
-                          AppLocalizations.of(context)!.add_motorcycle,
-                          style: TextStyle(
+                          isEditing
+                              ? "Edit motorcycle"
+                              : AppLocalizations.of(context)!.add_motorcycle,
+                          style: const TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.w700,
                           ),
@@ -257,23 +262,25 @@ SizedBox(height: 10,),
   }
 
   Future<void> _saveMotorcycle() async {
-    final isAdded = await viewModel.addMotorcycle();
+    final isEditing = viewModel.editingMotorcycle != null;
+    final isSaved = await viewModel.saveMotorcycle();
     if (!mounted) return;
 
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(
-          isAdded
-              ? "Motorcycle added successfully"
-              : "Failed to add motorcycle",
+          isSaved
+              ? isEditing
+                  ? "Motorcycle updated successfully"
+                  : "Motorcycle added successfully"
+              : "Failed to save motorcycle",
         ),
       ),
     );
 
-    if (isAdded) {
+    if (isSaved) {
       Navigator.pop(context);
     }
   }
 }
-
 

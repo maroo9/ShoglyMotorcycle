@@ -61,6 +61,20 @@ class FirebaseServices {
     DocumentReference<MotorcycleModel> Motordocument = MotorCollections.doc(Motor.id);
     return Motordocument.set(Motor);
   }
+  /// function to  update the user to fire base fire store
+  static Future<void>UpdateUserToFirestore(MotorcycleModel Motor) {
+    FirebaseFirestore db = FirebaseFirestore.instance;
+    CollectionReference<MotorcycleModel> MotorCollections =
+    db.collection("Motors").withConverter<MotorcycleModel>(
+      fromFirestore: (snapshot, _) => MotorcycleModel.fromJson(snapshot.data()!),
+      toFirestore: (Motor, _) => Motor.toJson(),
+    );
+    DocumentReference<MotorcycleModel> userDocument = MotorCollections.doc(Motor.id);
+    return userDocument.update(Motor.toJson());
+  }
+
+
+
   static Future<void> addMotorRepresttiveTofirestore(RepresentativeModel representative) {
     FirebaseFirestore dbs = FirebaseFirestore.instance;
     CollectionReference<RepresentativeModel> RepresentativeCollections =

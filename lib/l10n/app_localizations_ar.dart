@@ -483,5 +483,8 @@ class AppLocalizationsAr extends AppLocalizations {
   String get rent_paid => 'تم دفع الإيجار';
 
   @override
-  String get technician_name => 'اسم الفني';
+  String get technician_name => 'Technician';
+
+  @override
+  String get subscription_renewal_date => 'تاريخ تجديد الاشتراك';
 }

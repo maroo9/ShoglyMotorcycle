@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import '../../../../Core/ColorsManger/Colorsmanger.dart';
 import '../../../../Core/Widgets/InfoTile.dart';
@@ -11,13 +12,18 @@ class MotorcycleCard extends StatelessWidget {
   const MotorcycleCard({
     required this.motorcycle,
     this.representative,
+    required this.onEdit,
   });
 
   final MotorcycleModel motorcycle;
   final RepresentativeModel? representative;
+  final VoidCallback onEdit;
 
   @override
   Widget build(BuildContext context) {
+    final createdDate =
+        DateFormat('M-d-yyyy').format(motorcycle.createdAt.toDate());
+
     return Card(
       color: Colorsmanger.White,
       elevation: 1,
@@ -60,6 +66,11 @@ class MotorcycleCard extends StatelessWidget {
                 StatusChip(
                   status: representative == null ? AppLocalizations.of(context)!.available: AppLocalizations.of(context)!.rented,
                 ),
+                IconButton(
+                  tooltip: "Edit motorcycle",
+                  onPressed: onEdit,
+                  icon: const Icon(Icons.edit),
+                ),
               ],
             ),
             const SizedBox(height: 12),
@@ -70,6 +81,11 @@ class MotorcycleCard extends StatelessWidget {
             InfoRow(icon: Icons.palette, text: motorcycle.color),
             const SizedBox(height: 6),
             InfoRow(icon: Icons.person, text:  AppLocalizations.of(context)!.owner_name +": ${motorcycle.ownerId}"),
+            const SizedBox(height: 6),
+            InfoRow(
+              icon: Icons.calendar_today,
+              text:  AppLocalizations.of(context)!.subscription_renewal_date +": ${createdDate}",
+            ),
             if (motorcycle.ownerPhone.isNotEmpty) ...[
               const SizedBox(height: 6),
               InfoRow(
@@ -93,4 +109,3 @@ class MotorcycleCard extends StatelessWidget {
     );
   }
 }
-
