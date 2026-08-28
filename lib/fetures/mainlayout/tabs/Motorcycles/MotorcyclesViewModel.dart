@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:shoghly/Core/routesMnager/RoutesManger.dart';
+import 'package:intl/intl.dart';
 import '../../../../Models/MotorcycleModel.dart';
 import '../../../../Models/representativeModel.dart';
 import '../../../../Services/FirebaseServices.dart';
@@ -13,10 +13,13 @@ class MotorcyclesViewModel extends ChangeNotifier {
   final TextEditingController colorController = TextEditingController();
   final TextEditingController ownerController = TextEditingController();
   final TextEditingController ownerPhoneController = TextEditingController();
+  final TextEditingController subscriptionRenewalDateController =
+      TextEditingController();
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   String searchText = "";
   bool isSaving = false;
+  DateTime? selectedSubscriptionRenewalDate;
   MotorcycleModel? editingMotorcycle;
   FloatingActionButtonLocation fabLocation =
       FloatingActionButtonLocation.endFloat;
@@ -71,15 +74,32 @@ class MotorcyclesViewModel extends ChangeNotifier {
     }).toList();
   }
 
-  void prepareForm([MotorcycleModel? motorcycle]) {
+  void prepareForm([MotorcycleModel? motorcycle, String localeName = "en"]) {
     editingMotorcycle = motorcycle;
+    selectedSubscriptionRenewalDate =
+        motorcycle?.subscriptionRenewalDate.toDate() ?? DateTime.now();
     nameController.text = motorcycle?.name ?? "";
     modelController.text = motorcycle?.model ?? "";
     licenseController.text = motorcycle?.licenseNumber ?? "";
     colorController.text = motorcycle?.color ?? "";
     ownerController.text = motorcycle?.ownerId ?? "";
     ownerPhoneController.text = motorcycle?.ownerPhone ?? "";
+    subscriptionRenewalDateController.text = formatSubscriptionRenewalDate(
+      selectedSubscriptionRenewalDate!,
+      localeName,
+    );
     notifyListeners();
+  }
+
+  void selectSubscriptionRenewalDate(DateTime date, String localeName) {
+    selectedSubscriptionRenewalDate = date;
+    subscriptionRenewalDateController.text =
+        formatSubscriptionRenewalDate(date, localeName);
+    notifyListeners();
+  }
+
+  String formatSubscriptionRenewalDate(DateTime date, String localeName) {
+    return DateFormat('EEEE M-d-yyyy', localeName).format(date);
   }
 
   Future<bool> saveMotorcycle() async {
@@ -102,6 +122,9 @@ class MotorcyclesViewModel extends ChangeNotifier {
       imageUrl: currentMotorcycle?.imageUrl ?? "",
       status: currentMotorcycle?.status ?? "Available",
       createdAt: currentMotorcycle?.createdAt ?? Timestamp.now(),
+      subscriptionRenewalDate: Timestamp.fromDate(
+        selectedSubscriptionRenewalDate ?? DateTime.now(),
+      ),
       representativeId: currentMotorcycle?.representativeId,
       isRented: currentMotorcycle?.isRented ?? false,
     );
@@ -137,6 +160,8 @@ class MotorcyclesViewModel extends ChangeNotifier {
     colorController.clear();
     ownerController.clear();
     ownerPhoneController.clear();
+    subscriptionRenewalDateController.clear();
+    selectedSubscriptionRenewalDate = null;
   }
 
   @override
@@ -148,8 +173,7 @@ class MotorcyclesViewModel extends ChangeNotifier {
     colorController.dispose();
     ownerController.dispose();
     ownerPhoneController.dispose();
+    subscriptionRenewalDateController.dispose();
     super.dispose();
   }
-
-
 }

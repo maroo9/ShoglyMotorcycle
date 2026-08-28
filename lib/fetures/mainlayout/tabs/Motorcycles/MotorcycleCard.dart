@@ -21,8 +21,10 @@ class MotorcycleCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final createdDate =
-        DateFormat('M-d-yyyy').format(motorcycle.createdAt.toDate());
+    final subscriptionRenewalDate = DateFormat(
+      'EEEE M-d-yyyy',
+      Localizations.localeOf(context).languageCode,
+    ).format(motorcycle.subscriptionRenewalDate.toDate());
 
     return Card(
       color: Colorsmanger.White,
@@ -64,7 +66,9 @@ class MotorcycleCard extends StatelessWidget {
                   ),
                 ),
                 StatusChip(
-                  status: representative == null ? AppLocalizations.of(context)!.available: AppLocalizations.of(context)!.rented,
+                  status: representative == null
+                      ? AppLocalizations.of(context)!.available
+                      : AppLocalizations.of(context)!.rented,
                 ),
                 IconButton(
                   tooltip: "Edit motorcycle",
@@ -80,17 +84,23 @@ class MotorcycleCard extends StatelessWidget {
             const SizedBox(height: 6),
             InfoRow(icon: Icons.palette, text: motorcycle.color),
             const SizedBox(height: 6),
-            InfoRow(icon: Icons.person, text:  AppLocalizations.of(context)!.owner_name +": ${motorcycle.ownerId}"),
+            InfoRow(
+              icon: Icons.person,
+              text: AppLocalizations.of(context)!.owner_name +
+                  ": ${motorcycle.ownerId}",
+            ),
             const SizedBox(height: 6),
             InfoRow(
               icon: Icons.calendar_today,
-              text:  AppLocalizations.of(context)!.subscription_renewal_date +": ${createdDate}",
+              text: AppLocalizations.of(context)!.subscription_renewal_date +
+                  ": ${subscriptionRenewalDate}",
             ),
             if (motorcycle.ownerPhone.isNotEmpty) ...[
               const SizedBox(height: 6),
               InfoRow(
                 icon: Icons.phone,
-                text:  AppLocalizations.of(context)!.owner_phone+" ${motorcycle.ownerPhone}",
+                text: AppLocalizations.of(context)!.owner_phone +
+                    " ${motorcycle.ownerPhone}",
               ),
             ],
             if (representative != null) ...[
@@ -98,10 +108,10 @@ class MotorcycleCard extends StatelessWidget {
               const SizedBox(height: 6),
               InfoRow(
                 icon: Icons.phone,
-                text:  AppLocalizations.of(context)!.representative_phone + "${representative!.phone}",
+                text: AppLocalizations.of(context)!.representative_phone +
+                    "${representative!.phone}",
               ),
               const SizedBox(height: 6),
-
             ],
           ],
         ),

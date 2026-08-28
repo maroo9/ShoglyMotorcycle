@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 
 class CustomTextForm extends StatelessWidget {
   //  write all the variables  in constartor to be  use it
-  CustomTextForm({super.key,  this.labelText,
+  CustomTextForm({
+    super.key,
+    this.labelText,
     this.hintText,
     required this.controller,
     this.prefixIcon,
@@ -12,19 +14,23 @@ class CustomTextForm extends StatelessWidget {
     this.isObscure = false,
     this.keyboardType = TextInputType.text,
     required this.validator,
-    this.Lines=1,
+    this.Lines = 1,
     this.textStyle = const TextStyle(color: Colors.white),
+    this.readOnly = false,
+    this.onTap,
   });
   // makes the variable
-  final String? labelText;   /// as String "Name"
-  final String? hintText;   /// as String "Hint name"
-  final IconData?prefixIcon; /// as (IconData) that holds all icons
-  final Widget? suffixIcon;     /// as widget to  use  IconButton
+  final String? labelText; /// as String "Name"
+  final String? hintText; /// as String "Hint name"
+  final IconData? prefixIcon; /// as (IconData) that holds all icons
+  final Widget? suffixIcon; /// as widget to  use  IconButton
   final TextInputType? keyboardType;
   final bool isObscure;
   final TextStyle textStyle;
-  String? Function(String?)? validator;  /// work as the condition of the inputs by user
+  String? Function(String?)? validator; /// work as the condition of the inputs by user
   final TextEditingController controller;
+  final bool readOnly;
+  final VoidCallback? onTap;
 
   // final bool isSecure;
   //final String? Function(String?) validator;
@@ -33,14 +39,16 @@ class CustomTextForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return   TextFormField(
+    return TextFormField(
       maxLines: Lines,
-      controller:controller ,
+      controller: controller,
       validator: validator,
       obscureText: isObscure,
       keyboardType: keyboardType,
+      readOnly: readOnly,
+      onTap: onTap,
       decoration: InputDecoration(
-        prefixIcon:prefixIcon == null? null:Icon(prefixIcon),
+        prefixIcon: prefixIcon == null ? null : Icon(prefixIcon),
         suffixIcon: suffixIcon,
         labelText: labelText,
         hintText: hintText,
@@ -52,9 +60,6 @@ class CustomTextForm extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
           borderSide: BorderSide(color: Colors.blue),
         ),
-
-
-
       ),
     );
   }

@@ -304,7 +304,7 @@ class _RepresentativeState extends State<Representative> {
 
     if (shouldDelete != true) return;
 
-    final isDeleted = await viewModel.deleteRepresentative(representative.id);
+    final isDeleted = await viewModel.deleteRepresentative(representative);
     if (!mounted) return;
 
     ScaffoldMessenger.of(context).showSnackBar(

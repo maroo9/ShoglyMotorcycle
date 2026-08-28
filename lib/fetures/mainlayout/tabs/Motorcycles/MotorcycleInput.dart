@@ -9,6 +9,8 @@ class MotorcycleInput extends StatelessWidget {
     required this.icon,
     required this.validator,
     this.keyboardType = TextInputType.text,
+    this.readOnly = false,
+    this.onTap,
   });
 
   final TextEditingController controller;
@@ -16,6 +18,8 @@ class MotorcycleInput extends StatelessWidget {
   final IconData icon;
   final TextInputType keyboardType;
   final String? Function(String?, String) validator;
+  final bool readOnly;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +28,8 @@ class MotorcycleInput extends StatelessWidget {
       labelText: label,
       prefixIcon: icon,
       keyboardType: keyboardType,
+      readOnly: readOnly,
+      onTap: onTap,
       validator: (value) => validator(value, label),
     );
   }

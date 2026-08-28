@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+
 class MotorcycleModel {
   final String id;
   final String name;
@@ -11,6 +12,7 @@ class MotorcycleModel {
   final String imageUrl;
   final String status;
   final Timestamp createdAt;
+  final Timestamp subscriptionRenewalDate;
   final String? representativeId;
   final bool isRented;
 
@@ -26,6 +28,7 @@ class MotorcycleModel {
     required this.imageUrl,
     required this.status,
     required this.createdAt,
+    required this.subscriptionRenewalDate,
     this.representativeId,
     this.isRented = false,
   });
@@ -43,6 +46,9 @@ class MotorcycleModel {
       imageUrl: json["imageUrl"] ?? "",
       status: json["status"] ?? "Available",
       createdAt: json["createdAt"] ?? Timestamp.now(),
+      subscriptionRenewalDate: json["subscriptionRenewalDate"] ??
+          json["createdAt"] ??
+          Timestamp.now(),
       representativeId: json["representativeId"],
       isRented: json["isRented"] ?? false,
     );
@@ -61,6 +67,7 @@ class MotorcycleModel {
       "imageUrl": imageUrl,
       "status": status,
       "createdAt": createdAt,
+      "subscriptionRenewalDate": subscriptionRenewalDate,
       "representativeId": representativeId,
       "isRented": isRented,
     };

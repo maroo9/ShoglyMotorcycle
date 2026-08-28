@@ -13,6 +13,7 @@ class RepresentativeViewModel extends ChangeNotifier {
 
   String searchText = "";
   String? selectedMotorcycleId;
+  String? recentlyReleasedMotorcycleId;
   bool isSaving = false;
 
   Stream<List<RepresentativeModel>> get representativesStream {
@@ -44,7 +45,14 @@ class RepresentativeViewModel extends ChangeNotifier {
       uniqueMotors[motorcycle.id] = motorcycle;
     }
 
-    return uniqueMotors.values.toList();
+    final sortedMotors = uniqueMotors.values.toList();
+    sortedMotors.sort((first, second) {
+      if (first.id == recentlyReleasedMotorcycleId) return -1;
+      if (second.id == recentlyReleasedMotorcycleId) return 1;
+      return 0;
+    });
+
+    return sortedMotors;
   }
 
   void updateSearch(String value) {
@@ -109,12 +117,24 @@ class RepresentativeViewModel extends ChangeNotifier {
     }
   }
 
-  Future<bool> deleteRepresentative(String representativeId) async {
+  Future<bool> deleteRepresentative(RepresentativeModel representative) async {
     try {
-      await FirebaseFirestore.instance
-          .collection("Representatives")
-          .doc(representativeId)
-          .delete();
+      final firestore = FirebaseFirestore.instance;
+      final batch = firestore.batch();
+      final representativeRef =
+          firestore.collection("Representatives").doc(representative.id);
+      final motorcycleRef =
+          firestore.collection("Motors").doc(representative.motorcycleId);
+
+      batch.delete(representativeRef);
+      batch.update(motorcycleRef, {
+        "isRented": false,
+        "status": "Available",
+        "representativeId": FieldValue.delete(),
+      });
+
+      await batch.commit();
+      recentlyReleasedMotorcycleId = representative.motorcycleId;
       return true;
     } catch (_) {
       return false;

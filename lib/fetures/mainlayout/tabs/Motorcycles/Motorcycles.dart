@@ -2,11 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../Core/ColorsManger/Colorsmanger.dart';
-import '../../../../Core/Widgets/CustomTextForm.dart';
 import '../../../../Core/Widgets/Custom_Elvated button.dart';
-import '../../../../Core/Widgets/Custom_Text_Button.dart';
-import '../../../../Core/Widgets/InfoTile.dart';
-import '../../../../Core/Widgets/StatusChip.dart';
 import '../../../../Core/routesMnager/RoutesManger.dart';
 import '../../../../Models/MotorcycleModel.dart';
 import '../../../../Models/representativeModel.dart';
@@ -52,7 +48,7 @@ class _MotorcyclesState extends State<Motorcycles> {
       appBar: AppBar(
         backgroundColor: Colorsmanger.darkblue,
         foregroundColor: Colorsmanger.White,
-        title:  Text(AppLocalizations.of(context)!.motorcycles),
+        title: Text(AppLocalizations.of(context)!.motorcycles),
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colorsmanger.darkblue,
@@ -63,8 +59,9 @@ class _MotorcyclesState extends State<Motorcycles> {
       floatingActionButtonLocation: const RaisedEndFloatLocation(),
       body: Column(
         children: [
-SizedBox(height: 10,),
-
+          SizedBox(
+            height: 10,
+          ),
           Padding(
             padding: const EdgeInsets.all(20),
             child: TextField(
@@ -92,23 +89,27 @@ SizedBox(height: 10,),
                     if (snapshot.connectionState == ConnectionState.waiting ||
                         representativesSnapshot.connectionState ==
                             ConnectionState.waiting) {
-                  return const Center(child: CircularProgressIndicator());
-                }
+                      return const Center(child: CircularProgressIndicator());
+                    }
 
                     if (snapshot.hasError || representativesSnapshot.hasError) {
-                  return  Center(
-                    child: Text(AppLocalizations.of(context)!.could_not_load_motorcycles),
-                  );
-                }
+                      return Center(
+                        child: Text(
+                          AppLocalizations.of(context)!.could_not_load_motorcycles,
+                        ),
+                      );
+                    }
 
                 final motorcycles =
                     viewModel.filterMotorcycles(snapshot.data ?? []);
                     final representatives =
                         representativesSnapshot.data ?? [];
 
-                if (motorcycles.isEmpty) {
-                  return  Center(child: Text(AppLocalizations.of(context)!.no_motorcycles));
-                }
+                    if (motorcycles.isEmpty) {
+                      return Center(
+                        child: Text(AppLocalizations.of(context)!.no_motorcycles),
+                      );
+                    }
 
                 return ListView.separated(
                   padding: const EdgeInsets.fromLTRB(16, 0, 16, 90),
@@ -158,7 +159,7 @@ SizedBox(height: 10,),
 
 
   void _showMotorcycleSheet([MotorcycleModel? motorcycle]) {
-    viewModel.prepareForm(motorcycle);
+    viewModel.prepareForm(motorcycle, Localizations.localeOf(context).languageCode);
     final isEditing = motorcycle != null;
 
     showModalBottomSheet(
@@ -185,7 +186,7 @@ SizedBox(height: 10,),
                 children: [
                   Row(
                     children: [
-                       Expanded(
+                      Expanded(
                         child: Text(
                           isEditing
                               ? "Edit motorcycle"
@@ -212,44 +213,54 @@ SizedBox(height: 10,),
                   const SizedBox(height: 12),
                   MotorcycleInput(
                     controller: viewModel.modelController,
-                    label:  AppLocalizations.of(context)!.motorcycle_number,
+                    label: AppLocalizations.of(context)!.motorcycle_number,
                     icon: Icons.description,
                     validator: viewModel.requiredValidator,
                   ),
                   const SizedBox(height: 12),
                   MotorcycleInput(
                     controller: viewModel.licenseController,
-                    label:  AppLocalizations.of(context)!.license_number,
+                    label: AppLocalizations.of(context)!.license_number,
                     icon: Icons.confirmation_number,
                     validator: viewModel.requiredValidator,
                   ),
                   const SizedBox(height: 12),
                   MotorcycleInput(
                     controller: viewModel.colorController,
-                    label:  AppLocalizations.of(context)!.color,
+                    label: AppLocalizations.of(context)!.color,
                     icon: Icons.palette,
                     validator: viewModel.requiredValidator,
                   ),
                   const SizedBox(height: 12),
                   MotorcycleInput(
                     controller: viewModel.ownerController,
-                    label:  AppLocalizations.of(context)!.owner_name,
+                    label: AppLocalizations.of(context)!.owner_name,
                     icon: Icons.person,
                     validator: viewModel.requiredValidator,
                   ),
                   const SizedBox(height: 12),
                   MotorcycleInput(
                     controller: viewModel.ownerPhoneController,
-                    label:   AppLocalizations.of(context)!.owner_phone,
+                    label: AppLocalizations.of(context)!.owner_phone,
                     icon: Icons.phone,
                     keyboardType: TextInputType.phone,
+                    validator: viewModel.requiredValidator,
+                  ),
+                  const SizedBox(height: 12),
+                  MotorcycleInput(
+                    controller: viewModel.subscriptionRenewalDateController,
+                    label:
+                        AppLocalizations.of(context)!.subscription_renewal_date,
+                    icon: Icons.calendar_today,
+                    readOnly: true,
+                    onTap: _pickSubscriptionRenewalDate,
                     validator: viewModel.requiredValidator,
                   ),
                   const SizedBox(height: 18),
                   viewModel.isSaving
                       ? const Center(child: CircularProgressIndicator())
                       : CustomElevatedButton(
-                          text:  AppLocalizations.of(context)!.save_motorcycle,
+                          text: AppLocalizations.of(context)!.save_motorcycle,
                           onPress: _saveMotorcycle,
                         ),
                 ],
@@ -259,6 +270,23 @@ SizedBox(height: 10,),
         );
       },
     );
+  }
+
+  Future<void> _pickSubscriptionRenewalDate() async {
+    final now = DateTime.now();
+    final selectedDate = await showDatePicker(
+      context: context,
+      initialDate: viewModel.selectedSubscriptionRenewalDate ?? now,
+      firstDate: DateTime(now.year - 20),
+      lastDate: DateTime(now.year + 20),
+    );
+
+    if (selectedDate != null) {
+      viewModel.selectSubscriptionRenewalDate(
+        selectedDate,
+        Localizations.localeOf(context).languageCode,
+      );
+    }
   }
 
   Future<void> _saveMotorcycle() async {
@@ -283,4 +311,3 @@ SizedBox(height: 10,),
     }
   }
 }
-
